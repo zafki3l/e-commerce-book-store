@@ -1,7 +1,7 @@
 <?php 
     include('../../backend/connect.php');
-    include('../../backend/admin/getUserList.php');
-    $userList = getUserList($conn);
+    include('../../backend/admin/findUser.php');
+    $userList = getFindUser($conn);
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,10 @@
     <div class="main-content">
         <h2>THIS IS ADMIN DASHBOARD</h2>
 
-        <a href="findUser.php">find</a>
+        <form action="findUser.php" method="post">
+            <input type="text" name="user" id="user" placeholder="Find user by name or id">
+            <input type="submit">
+        </form>
         <br>
         <a href="addUser.php">Add user</a>
         <a href="editUser.php">Edit user</a>
