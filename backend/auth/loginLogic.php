@@ -13,7 +13,7 @@
     } else {
         $user = mysqli_fetch_assoc($query);
         if (hash('sha256', $password) == $user['password']) {
-            header('Location: ../../view/homepage.php');
+            header('Location: ../../view/homepage/homepage.php');
             exit();
         } else {
             header('Location: view/auth/login.php');

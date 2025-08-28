@@ -8,7 +8,5 @@
 
     if (!$conn) {
         echo 'Can not connect to database<br>';
-    } else {
-        echo 'Connected to database successfully<br>';
     }
 ?>
