@@ -1,7 +1,3 @@
-<?php 
-    $role = $_SESSION['role'] ?? '';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +11,7 @@
         <ul type="none" class="nav-menu">
             <div class="nav-left">
                 <li><a href="../homepage/homepage.php">Homepage</a></li>
-                <?php if($role == 3): ?> <!--admin-->
-                        <li><a href="../admin/dashboard.php">Admin Dashboard</a></li> <!--show dashboard for admin-->
-                        <li><a href="../staff/dashboard.php">Staff Dashboard</a></li>
-                <?php elseif($role == 2): ?>
-                        <li><a href="../staff/dashboard.php">Staff Dashboard</a></li> <!--Show dashboard for staff-->
-                <?php endif; ?>
-                <li><a href="#">Books Category</a> </li>
-                <li><a href="#">On Sales</a></li>
-                <li><a href="#">New Books</a></li>
+                <li><a href="/bookStore/view/admin/dashboard.php">Admin Dashboard</a></li>
             </div>
 
             <div class="nav-right">
@@ -39,13 +27,6 @@
                     <li><a href="../auth/register.php">Register</a></li>
                     <li><a href="../auth/login.php">Login</a></li>
                 <?php endif; ?>
-            </div>
-        </ul>
-        <ul type="none" class="user-menu">
-            <div class="search-bar">
-                <form action="#" method="get">
-                    <input type="text" name="name" placeholder="Search books..."/>
-                </form>
             </div>
         </ul>
     </div>

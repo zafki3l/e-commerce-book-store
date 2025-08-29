@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    include('C:\xampp\htdocs\bookStore\backend\connect.php');
+    include('findIdtoEditUser.php');
+
+    $user = findUser($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,30 +15,25 @@
     <title>Edit user</title>
 </head>
 <body>
-    <!--Header-->
-    <?php include('../layouts/header.php') ?>
 
     <!--Main content-->
     <div class="main-content">
         <h2>Edit user</h2>
 
         <form action="../../backend/admin/editUser.php" method="post">
-            <input type="text" name="id" id="id" placeholder="id_user" required>
+            <input type="text" name="id" id="id" placeholder="id_user" value="<?php echo $user['id'] ?>" required>
             <br>
-            <input type="text" name="username" id="username" placeholder="Username" required>
+            <input type="text" name="username" id="username" value="<?php echo $user['username'] ?>" placeholder="Username" required>
             <br>
-            <input type="text" name="email" id="email" placeholder="Email" required>
+            <input type="text" name="email" id="email" value="<?php echo $user['email'] ?>" placeholder="Email" required>
             <br>
-            <input type="text" name="password" id="password" placeholder="Password" required>
+            <input type="text" name="password" id="password" value="<?php echo $user['password'] ?>" placeholder="Password" required>
             <br>
-            <input type="role" name="role" id="role" placeholder="Role" required>
+            <input type="text" name="role" id="role" value="<?php echo $user['role'] ?>" placeholder="Role" required>
             <br>
             <input type="submit">
-            <a href="dashboard.php">Cancel</a>
+            <a href="findIdtoEditUser.php">Cancel</a>
         </form>
     </div>
-
-    <!--Footer-->
-    <?php include('../layouts/footer.php') ?>
 </body>
 </html>

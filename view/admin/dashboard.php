@@ -1,7 +1,20 @@
 <?php 
+    session_start();
     include('../../backend/connect.php');
-    include('../../backend/admin/getUserList.php');
-    $userList = getUserList($conn);
+    include('../../backend/admin/findUser.php');
+
+    if (!isset($_SESSION['id'])) {
+        header('Location: ../auth/login.php');
+        exit();
+    }
+
+    if ($_SESSION['role'] != 3) {
+        exit('You do not have permission to access this site!');
+    }
+
+    $username = $_SESSION['username'];
+
+    $userList = getFindUser($conn);
 ?>
 
 <!DOCTYPE html>
@@ -14,16 +27,19 @@
 </head>
 <body>
     <!--Header-->
-    <?php include('../layouts/header.php') ?>
+    <?php include('../layouts/admin/adminHeader.php') ?>
 
     <!--Main content-->
     <div class="main-content">
         <h2>THIS IS ADMIN DASHBOARD</h2>
-
-        <a href="findUser.php">find</a>
+        <h3>WELCOME, <?php echo $username; ?></h3>
+        <form action="dashboard.php" method="post">
+            <input type="text" name="user" id="user" placeholder="Find user by name or id">
+            <input type="submit">
+        </form>
         <br>
         <a href="addUser.php">Add user</a>
-        <a href="editUser.php">Edit user</a>
+        <a href="findIdtoEditUser.php">Edit user</a>
         <a href="deleteUser.php">Delete user</a>
         
         <table border="1">
@@ -68,8 +84,5 @@
             </tbody>
         </table>
     </div>
-
-    <!--Footer-->
-    <?php include('../layouts/footer.php') ?>
 </body>
 </html>

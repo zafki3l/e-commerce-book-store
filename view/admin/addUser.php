@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +12,7 @@
 </head>
 <body>
     <!--Header-->
-    <?php include('../layouts/header.php') ?>
+    <?php include('../layouts/admin/adminHeader.php') ?>
 
     <!--Main content-->
     <div class="main-content">
@@ -21,14 +25,11 @@
             <br>
             <input type="text" name="password" id="password" placeholder="Password" required>
             <br>
-            <input type="role" name="role" id="role" placeholder="Role" required>
+            <input type="text" name="role" id="role" placeholder="Role" required>
             <br>
             <input type="submit">
             <a href="dashboard.php">Cancel</a>
         </form>
     </div>
-
-    <!--Footer-->
-    <?php include('../layouts/footer.php') ?>
 </body>
 </html>
