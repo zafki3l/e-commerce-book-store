@@ -22,8 +22,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/auth/login.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/bookStore/public/books/indexBook.css">
+    <title>Index Book</title>
 </head>
 <body>
     <!--Header-->
@@ -42,6 +42,7 @@
         <a href="findIdToEditBook.php">Edit Book</a>
         <a href="deleteBook.php">Delete Book</a>
 
+        
         <table border="1">
             <thead>
                 <tr>

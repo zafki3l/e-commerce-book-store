@@ -27,7 +27,7 @@
     <div class="main-content">
         <h2>Add Book</h2>
 
-        <form action="../../../backend/books/addBook.php" method="post">
+        <form action="../../../backend/books/addBook.php" method="post" enctype="multipart/form-data">
             <input type="text" name="bookName" id="bookName" placeholder="Book name" required>
             <br>
             <input type="text" name="author" id="author" placeholder="Author" required>
@@ -42,9 +42,9 @@
             <br>
             <input type="text" name="quantity" id="quantity" placeholder="Quantity" required>
             <br>
-            <input type="text" name="bookCover" id="bookCover" placeholder="Book cover" required>
+            <input type="file" name="bookCover" id="bookCover" placeholder="Book cover" required>
             <br>
-            <input type="submit">
+            <input type="submit" name="create">
             <a href="bookIndex.php">Cancel</a>
         </form>
     </div>

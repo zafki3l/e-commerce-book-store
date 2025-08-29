@@ -10,7 +10,7 @@
     <div class="header">
         <ul type="none" class="nav-menu">
             <div class="nav-left">
-                <li><a href="../homepage/homepage.php">Homepage</a></li>
+                <li><a href="/bookStore/view/homepage/homepage.php">Homepage</a></li>
                 <li><a href="/bookStore/view/staff/dashboard.php">Staff Dashboard</a></li>
             </div>
 

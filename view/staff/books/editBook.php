@@ -29,7 +29,7 @@
     <div class="main-content">
         <h2>Edit Book</h2>
 
-        <form action="../../../backend/books/editBook.php" method="post">
+        <form action="../../../backend/books/editBook.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
             <input type="text" name="bookName" id="bookName" value="<?php echo $book['bookName'] ?>" placeholder="Book name">
             <br>
@@ -45,9 +45,9 @@
             <br>
             <input type="text" name="quantity" id="quantity" value="<?php echo $book['quantity'] ?>" placeholder="Quantity">
             <br>
-            <input type="text" name="bookCover" id="bookCover" value="<?php echo $book['bookCover'] ?>" placeholder="Book cover">
+            <input type="file" name="bookCover" id="bookCover" value="<?php echo $book['bookCover'] ?>" placeholder="Book cover">
             <br>
-            <input type="submit">
+            <input type="submit" name="edit">
             <a href="findIdToEditBook.php">Cancel</a>
         </form>
     </div>
