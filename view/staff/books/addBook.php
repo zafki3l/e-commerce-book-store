@@ -34,7 +34,7 @@
             <br>
             <input type="text" name="publisher" id="publisher" placeholder="Publisher" required>
             <br>
-            <input type="text" name="category" id="role" placeholder="Category" required>
+            <input type="text" name="category" id="category" placeholder="Category" required>
             <br>
             <textarea name="description" id="description" style="width: 300px; height: 150px;" placeholder="Enter description..."></textarea>
             <br>
@@ -42,7 +42,7 @@
             <br>
             <input type="text" name="quantity" id="quantity" placeholder="Quantity" required>
             <br>
-            <input type="file" name="bookCover" id="bookCover" placeholder="Book cover" required>
+            <input type="file" name="bookCover" id="bookCover" placeholder="Book cover">
             <br>
             <input type="submit" name="create">
             <a href="bookIndex.php">Cancel</a>

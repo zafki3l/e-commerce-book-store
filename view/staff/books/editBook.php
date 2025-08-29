@@ -45,10 +45,10 @@
             <br>
             <input type="text" name="quantity" id="quantity" value="<?php echo $book['quantity'] ?>" placeholder="Quantity">
             <br>
-            <input type="file" name="bookCover" id="bookCover" value="<?php echo $book['bookCover'] ?>" placeholder="Book cover">
+            <input type="hidden" name="oldBookCover" value="<?php echo $book['bookCover']; ?>">
+            <input type="file" name="bookCover" id="bookCover" placeholder="Book cover">
             <br>
             <input type="submit" name="edit">
-            <a href="findIdToEditBook.php">Cancel</a>
         </form>
     </div>
 </body>
