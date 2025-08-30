@@ -12,10 +12,11 @@
     }
 
     $username = $_SESSION['username'];
+    $order_id = $_GET['id'];
 
-    function getOrderDetailList($conn) 
+    //Xử lý logic truy vấn orderDetails
+    function getOrderDetailList($conn, $order_id) 
     {
-        $order_id = $_GET['id'];
         $sql = "SELECT od.id, 
                         od.order_id, 
                         od.book_id, 
@@ -45,9 +46,9 @@
         return $result;
     }
 
-    function getOrderTotalPrice($conn) 
+    //Tính tổng của tất cả orderItem trong order
+    function getOrderTotalPrice($conn, $order_id) 
     {
-        $order_id = $_GET['id'];
         $totalPrice = 0;
 
         $sql = "SELECT order_id, SUM(price * quantity) as 'TotalPrice'
@@ -60,15 +61,17 @@
         if (!$query) {
             echo "ERROR<br>";
         } else {
-            $value = mysqli_fetch_assoc($query);
-            $totalPrice = $value['TotalPrice'];
+            if ($query && mysqli_num_rows($query) > 0) {
+                $value = mysqli_fetch_assoc($query);
+                $totalPrice = $value['TotalPrice'];
+            }
         }
 
         return $totalPrice;
     }
 
-    $orderDetailList = getOrderDetailList($conn);
-    $totalPrice = getOrderTotalPrice($conn);
+    $orderDetailList = getOrderDetailList($conn, $order_id);
+    $totalPrice = getOrderTotalPrice($conn, $order_id);
 ?>
 
 <!DOCTYPE html>
@@ -87,14 +90,8 @@
     <div class="main-content">
         <h2>THIS IS ORDER DETAIL MANAGEMENT</h2>
         <h3>WELCOME, <?php echo $username; ?></h3>
-        <form action="orderIndex.php" method="post">
-            <input type="text" name="order" id="order" placeholder="Find order by order id or user id">
-            <input type="submit">
-        </form>
         <br>
-        <a href="addOrder.php">Add order item</a>
-        <a href="editOrder.php">Edit order item</a>
-        <a href="deleteOrder.php">Delete order item</a>
+        <a href="addOrderItem.php?id=<?php echo $order_id?>">Add order item</a>
         
         <table border="1">
             <thead>
@@ -114,6 +111,7 @@
             </thead>
             <tbody>
                 <?php foreach ($orderDetailList as $orderDetail): ?>
+                    <?php $rowTotal = $orderDetail['price'] * $orderDetail['quantity']; ?>
                     <tr>
                         <td><?php echo $orderDetail['id'] ?></td>
                         <td><?php echo $orderDetail['order_id'] ?></td>
@@ -123,21 +121,20 @@
                         <td><?php echo $orderDetail['publisher'] ?></td>
                         <td><?php echo $orderDetail['price'] ?></td>
                         <td><?php echo $orderDetail['quantity'] ?></td>
-                        <th><?php 
-                            $totalPrice = $orderDetail['price'] * $orderDetail['quantity'];
-
-                            echo $totalPrice;
-                        ?></th>
+                        <td><?php echo $rowTotal ?></td>
                         <td><?php echo $orderDetail['created_at'] ?></td>
                         <td><?php echo $orderDetail['update_at'] ?></td>
                     </tr>
                 <?php endforeach; ?>
                 <tr>
-                    <td>Order Total Price</td>
-                    <td><?php echo $totalPrice ?></td>
+                    <td colspan="8"><b>Order Total Price</b></td>
+                    <td colspan="3"><?php echo $totalPrice ?></td>
                 </tr>
+
             </tbody>
         </table>
+
+        <a href="orderIndex.php">Cancel</a>
     </div>
 </body>
 </html>

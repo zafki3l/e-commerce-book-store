@@ -14,6 +14,22 @@
     }
 
     $username = $_SESSION['username'];
+
+    //Tính tổng của tất cả orderItem trong order
+    function getOrderTotalPriceById($conn, $order_id) {
+        $sql = "SELECT SUM(price * quantity) as TotalPrice 
+                FROM orderDetails 
+                WHERE order_id = $order_id";
+        $query = mysqli_query($conn, $sql);
+
+        if ($query && mysqli_num_rows($query) > 0) {
+            $value = mysqli_fetch_assoc($query);
+            return $value['TotalPrice'] ?? 0;
+        }
+
+        return 0;
+    }
+
     $orderList = getFindOrder($conn);
 ?>
 
@@ -60,7 +76,7 @@
                         <tr>
                             <td><?php echo $order['id'] ?></td>
                             <td><?php echo $order['user_id'] ?></td>
-                            <td><?php echo '0.00' ?></td>
+                            <td><?php echo getOrderTotalPriceById($conn, $order['id']) ?></td>
                             <td>
                                 <?php 
                                     if ($order['status'] == 1) {
