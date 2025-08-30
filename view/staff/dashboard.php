@@ -32,7 +32,7 @@
         <br>
         <a href="books/bookIndex.php">Book Management</a>
         <br>
-        <a href="#">Product Management</a>
+        <a href="orders/orderIndex.php">Order Management</a>
         <br>
         <a href="#">Create Monthly Sales Report</a>
         <br>

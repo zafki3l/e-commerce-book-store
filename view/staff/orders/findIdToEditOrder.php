@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/auth/login.css">
-    <title>Find ID to edit book</title>
+    <link rel="stylesheet" href="\bookStore\public\css\auth\login.css">
+    <title>Add user</title>
 </head>
 <body>
     <!--Header-->
     <?php include('C:\xampp\htdocs\bookStore\view\layouts\staff\staffHeader.php') ?>
-    
+
+    <!--Main content-->
     <div class="main-content">
-        <h2>Type a book id to edit</h2>
-        <form action="editBook.php">
-            <input type="text" name="id" placeholder="Book id">
+        <h2>Find id to edit order</h2>
+
+        <form action="editOrder.php" method="get">
+            <input type="text" name="id" id="id" placeholder="Order id" required>
+            <br>
             <input type="submit">
-            <a href="bookIndex.php">cancel</a>
+            <a href="orderIndex.php">Cancel</a>
         </form>
     </div>
 </body>
@@ -23,11 +26,11 @@
 
 <?php
     include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
-    function findBook($conn)
+    function findOrder($conn)
     {
-        $id = (int) $_GET['id']; 
+        $id = $_GET['id'] ?? '1'; 
 
-        $sql = "SELECT * FROM books WHERE id = $id";
+        $sql = "SELECT * FROM orders WHERE id = $id";
 
         $query = mysqli_query($conn, $sql);
         $book = mysqli_fetch_assoc($query);

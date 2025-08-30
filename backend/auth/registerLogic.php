@@ -11,8 +11,10 @@
     $query = mysqli_query($conn, $sql);
 
     if ($query) {
-        echo 'Insert data successfully!<br>';
+        header('Location: ../../view/auth/login.php');
+        exit();
     } else {
-        echo 'Can not insert data!<br>';
+        header('Location: ../../view/auth/register.php');
+        exit();
     }
 ?>

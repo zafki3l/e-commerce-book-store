@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $username = $_SESSION['username']; // lỗi nếu chưa gọi session_start()
+    $username = $_SESSION['username'] ?? ''; // lỗi nếu chưa gọi session_start()
 ?>
 
 <!DOCTYPE html>
