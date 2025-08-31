@@ -31,21 +31,21 @@
 
         <form action="../../../backend/books/editBook.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
-            <input type="text" name="bookName" id="bookName" value="<?php echo $book['bookName'] ?>" placeholder="Book name">
+            <input type="text" name="bookName" id="bookName" value="<?php echo htmlspecialchars($book['bookName']) ?>" placeholder="Book name">
             <br>
-            <input type="text" name="author" id="author" value="<?php echo $book['author'] ?>" placeholder="Author">
+            <input type="text" name="author" id="author" value="<?php echo htmlspecialchars($book['author']) ?>" placeholder="Author">
             <br>
-            <input type="text" name="publisher" id="publisher" value="<?php echo $book['publisher'] ?>" placeholder="Publisher">
+            <input type="text" name="publisher" id="publisher" value="<?php echo htmlspecialchars($book['publisher']) ?>" placeholder="Publisher">
             <br>
-            <input type="text" name="category" id="role" value="<?php echo $book['category'] ?>" placeholder="Category">
+            <input type="text" name="category" id="role" value="<?php echo htmlspecialchars($book['category']) ?>" placeholder="Category">
             <br>
-            <textarea name="description" id="description" style="width: 300px; height: 150px;" placeholder="Enter description..."><?php echo $book['description'] ?></textarea>
+            <textarea name="description" id="description" style="width: 300px; height: 150px;" placeholder="Enter description..."><?php echo htmlspecialchars($book['description']) ?></textarea>
             <br>
-            <input type="text" name="price" id="price" value="<?php echo $book['price'] ?>" placeholder="Price">
+            <input type="text" name="price" id="price" value="<?php echo htmlspecialchars($book['price']) ?>" placeholder="Price">
             <br>
-            <input type="text" name="quantity" id="quantity" value="<?php echo $book['quantity'] ?>" placeholder="Quantity">
+            <input type="text" name="quantity" id="quantity" value="<?php echo htmlspecialchars($book['quantity']) ?>" placeholder="Quantity">
             <br>
-            <input type="hidden" name="oldBookCover" value="<?php echo $book['bookCover']; ?>">
+            <input type="hidden" name="oldBookCover" value="<?php echo htmlspecialchars($book['bookCover']) ?>">
             <input type="file" name="bookCover" id="bookCover" placeholder="Book cover">
             <br>
             <input type="submit" name="edit">

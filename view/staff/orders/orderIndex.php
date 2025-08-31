@@ -35,7 +35,7 @@
     <!--Main content-->
     <div class="main-content">
         <h2>THIS IS ORDER MANAGEMENT</h2>
-        <h3>WELCOME, <?php echo $username; ?></h3>
+        <h3>WELCOME, <?php echo htmlspecialchars($username) ?></h3>
         <form action="orderIndex.php" method="post">
             <input type="text" name="id" id="id" placeholder="Find order by order id">
             <input type="submit">
@@ -62,24 +62,24 @@
                 <tr>
                     <?php foreach ($orderList as $order): ?>
                         <tr>
-                            <td><?php echo $order['id'] ?></td>
-                            <td><?php echo $order['user_id'] ?></td>
-                            <td><?php echo $order['username'] ?></td>
-                            <td><?php echo getOrderTotalPriceById($mysqli, $order['id']) ?></td>
+                            <td><?php echo htmlspecialchars($order['id']) ?></td>
+                            <td><?php echo htmlspecialchars($order['user_id']) ?></td>
+                            <td><?php echo htmlspecialchars($order['username']) ?></td>
+                            <td><?php echo htmlspecialchars(getOrderTotalPriceById($mysqli, $order['id'])) ?></td>
                             <td>
                                 <?php 
                                     switch($order['status']) {
                                         case 1: $statusName = 'Pending'; break;
                                         case 2: $statusName = 'Being delivered'; break;
                                         case 3: $statusName = 'Completed'; break;
-                                        default: echo 'Unknown';
+                                        default: echo htmlspecialchars('Unknown');
                                     }
-                                    echo $statusName;
+                                    echo htmlspecialchars($statusName);
                                 ?>
                             </td>
-                            <td><?php echo $order['created_at'] ?></td>
-                            <td><?php echo $order['update_at'] ?></td>
-                            <td><a href="viewOrderDetail.php?id=<?php echo $order['id'] ?>">View</a></td>
+                            <td><?php echo htmlspecialchars($order['created_at']) ?></td>
+                            <td><?php echo htmlspecialchars($order['update_at']) ?></td>
+                            <td><a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>">View</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tr>

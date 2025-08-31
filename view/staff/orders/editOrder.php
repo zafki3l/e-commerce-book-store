@@ -32,13 +32,13 @@
 
         <form action="/bookStore/backend/orders/editOrder.php" method="post">
             <label for="">Order id</label>
-            <input type="text" name="id" id="id" value="<?php echo $order['id'] ?>" placeholder="Order id">
+            <input type="text" name="id" id="id" value="<?php echo htmlspecialchars($order['id']) ?>" placeholder="Order id">
             <br>
             <label for="">User id</label>
-            <input type="text" name="user_id" id="user_id" value="<?php echo $order['user_id'] ?>" placeholder="User id">
+            <input type="text" name="user_id" id="user_id" value="<?php echo htmlspecialchars($order['user_id']) ?>" placeholder="User id">
             <br>
             <label for="">Status</label>
-            <input type="text" name="status" id="status" value="<?php echo $order['status'] ?>" placeholder="Status">
+            <input type="text" name="status" id="status" value="<?php echo htmlspecialchars($order['status']) ?>" placeholder="Status">
             <br>
             <input type="submit">
             <a href="orderIndex.php">Cancel</a>

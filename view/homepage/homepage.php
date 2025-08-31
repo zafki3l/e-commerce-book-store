@@ -1,6 +1,9 @@
 <?php 
+    include('C:\xampp\htdocs\bookStore\backend\bookSection\newbooks.php');
     session_start();
     $username = $_SESSION['username'] ?? ''; 
+
+    $books = $result;
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +21,18 @@
     <!--Main content-->
     <div class="main-content">
         <h2>WELCOME</h2>
+
+        <!--NEW BOOKS-->
+        <div class="book-grid">
+            <?php foreach ($books as $book): ?>
+                <div class="book-item">
+                    <img src="../../public/images/<?php echo htmlspecialchars($book['bookCover']) ?>" alt="<?php echo htmlspecialchars($book['bookName']) ?>">
+                    <p><?php echo htmlspecialchars($book['author']) ?></p>
+                    <h3><?php echo htmlspecialchars($book['bookName']) ?></h3>
+                    <p><?php echo htmlspecialchars($book['price']) ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 
     <!--Footer-->

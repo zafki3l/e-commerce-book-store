@@ -1,3 +1,4 @@
+/* Trong public/css/app.css */
 .main-content {
     background-color: #ca122f;
     flex: 1;
@@ -24,4 +25,141 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+}
+/* Reset cơ bản */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4; /* Màu nền nhẹ nhàng */
+    color: #333;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px; /* Giới hạn chiều rộng nội dung */
+    margin: 0 auto; /* Căn giữa nội dung */
+}
+
+.book-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #555;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #ccc;
+    display: inline-block; /* Để đường gạch chân chỉ vừa đủ chữ */
+    padding-bottom: 0.5rem;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(200px, 1fr)); /* Tự động chia cột linh hoạt */
+    gap: 1.5rem; /* Khoảng cách giữa các item */
+    justify-content: center; /* Căn giữa các item nếu không đủ lấp đầy hàng */
+}
+
+.book-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng hover */
+}
+
+.book-item:hover {
+    transform: translateY(-5px); /* Nâng nhẹ lên khi hover */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.book-item img {
+    max-width: 100%;
+    height: 200px; /* Chiều cao cố định cho ảnh */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.book-title {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    height: 3em; /* Giới hạn chiều cao để không bị lệch */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Giới hạn 2 dòng */
+    -webkit-box-orient: vertical;
+}
+
+.book-author {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.8rem;
+}
+
+.book-price {
+    font-size: 1.2rem;
+    color: #e44d26; /* Màu cam cho giá */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.original-price {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 0.2rem;
+}
+
+.sale-price {
+    font-size: 1.2rem;
+    color: #28a745; /* Màu xanh lá cho giá sale */
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.btn-view-detail, .btn-add-to-cart {
+    display: block; /* Mỗi nút một dòng */
+    width: 90%;
+    margin: 0.5rem auto;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-view-detail {
+    background-color: #007bff; /* Màu xanh dương */
+    color: white;
+}
+
+.btn-view-detail:hover {
+    background-color: #0056b3;
+}
+
+.btn-add-to-cart {
+    background-color: #28a745; /* Màu xanh lá */
+    color: white;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #218838;
+}
+
+/* Responsive cơ bản cho màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    .book-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .book-item img {
+        height: 150px;
+    }
 }

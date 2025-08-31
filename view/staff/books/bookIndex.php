@@ -32,7 +32,7 @@
     <!--Main content-->
     <div class="main-content">
         <h2>THIS IS BOOK MANAGEMENT</h2>
-        <h3>WELCOME, <?php echo $username; ?></h3>
+        <h3>WELCOME, <?php echo htmlspecialchars($username); ?></h3>
         <form action="bookIndex.php" method="post">
             <input type="text" name="book" id="book" placeholder="Find book by name, author, or id">
             <input type="submit">
@@ -64,18 +64,18 @@
                 <tr>
                     <?php foreach($bookList as $book): ?>
                         <tr>
-                            <td><?php echo $book['id'] ?></td>
-                            <td><?php echo $book['bookName'] ?></td>
-                            <td><?php echo $book['author'] ?></td>
-                            <td><?php echo $book['publisher'] ?></td>
-                            <td><?php echo $book['category'] ?></td>
-                            <td><?php echo $book['description'] ?></td>
-                            <td><?php echo $book['price'] ?></td>
-                            <td><?php echo $book['quantity'] ?></td>
-                            <td><?php echo (($book['status'] > 0) ? "In stock" : "Out stock") ?></td>
-                            <td><?php echo $book['bookCover'] ?></td>
-                            <td><?php echo $book['created_at'] ?></td>
-                            <td><?php echo $book['update_at'] ?></td>
+                            <td><?php echo htmlspecialchars($book['id']) ?></td>
+                            <td><?php echo htmlspecialchars($book['bookName']) ?></td>
+                            <td><?php echo htmlspecialchars($book['author']) ?></td>
+                            <td><?php echo htmlspecialchars($book['publisher']) ?></td>
+                            <td><?php echo htmlspecialchars($book['category']) ?></td>
+                            <td><?php echo htmlspecialchars($book['description']) ?></td>
+                            <td><?php echo htmlspecialchars($book['price']) ?></td>
+                            <td><?php echo htmlspecialchars($book['quantity']) ?></td>
+                            <td><?php echo htmlspecialchars((($book['status'] > 0) ? "In stock" : "Out stock")) ?></td>
+                            <td><?php echo htmlspecialchars($book['bookCover']) ?></td>
+                            <td><?php echo htmlspecialchars($book['created_at']) ?></td>
+                            <td><?php echo htmlspecialchars($book['update_at']) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tr>

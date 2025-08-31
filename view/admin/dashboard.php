@@ -54,25 +54,24 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($GLOBALS['userList'] as $user): ?>
+                <?php foreach($userList as $user): ?>
                     <tr>
-                        <td><?php echo $user['id'] ?></td>
-                        <td><?php echo $user['username'] ?></td>
-                        <td><?php echo $user['email'] ?></td>
+                        <td><?php echo htmlspecialchars($user['id']) ?></td>
+                        <td><?php echo htmlspecialchars($user['username']) ?></td>
+                        <td><?php echo htmlspecialchars($user['email']) ?></td>
                         <td>
                             <?php 
                                 switch ($user['role']) {
                                     case 1: $roleName = 'User'; break;
                                     case 2: $roleName = 'Staff'; break;
                                     case 3: $roleName = 'Admin'; break;
-                                    default: echo "Unknown";
+                                    default: echo htmlspecialchars("Unknown");
                                 }
-                                echo $roleName;
+                                echo htmlspecialchars($roleName);
                             ?>
                         </td>
-                        <td><?php echo $user['created_at'] ?></td>
-                        <td><?php 
-                        echo $user['update_at'] ?></td>
+                        <td><?php echo htmlspecialchars($user['created_at']) ?></td>
+                        <td><?php echo htmlspecialchars($user['update_at']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

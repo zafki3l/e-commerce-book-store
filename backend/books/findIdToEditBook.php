@@ -9,7 +9,10 @@
         if(!empty($_GET['id'])) {
             $id = $_GET['id']; 
         } else {
-            $id = 1;
+            $sql = $mysqli->query("SELECT * FROM books ORDER BY id LIMIT 1");
+
+            $query = $sql->fetch_assoc();
+            $id = $query['id'];
         }
 
         /**

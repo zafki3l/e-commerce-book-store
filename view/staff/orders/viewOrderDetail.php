@@ -37,7 +37,7 @@
         <h2>THIS IS ORDER DETAIL MANAGEMENT</h2>
         <h3>WELCOME, <?php echo $username; ?></h3>
         <br>
-        <a href="addOrderItem.php?id=<?php echo $order_id?>">Add order item</a>
+        <a href="addOrderItem.php?id=<?php echo htmlspecialchars($order_id)?>">Add order item</a>
         
         <table border="1">
             <thead>
@@ -59,22 +59,22 @@
                 <?php foreach ($orderDetailList as $orderDetail): ?>
                     <?php $rowTotal = $orderDetail['price'] * $orderDetail['quantity']; ?>
                     <tr>
-                        <td><?php echo $orderDetail['id'] ?></td>
-                        <td><?php echo $orderDetail['order_id'] ?></td>
-                        <td><?php echo $orderDetail['book_id'] ?></td>
-                        <td><?php echo $orderDetail['bookName'] ?></td>
-                        <td><?php echo $orderDetail['author'] ?></td>
-                        <td><?php echo $orderDetail['publisher'] ?></td>
-                        <td><?php echo $orderDetail['price'] ?></td>
-                        <td><?php echo $orderDetail['quantity'] ?></td>
-                        <td><?php echo $rowTotal ?></td>
-                        <td><?php echo $orderDetail['created_at'] ?></td>
-                        <td><?php echo $orderDetail['update_at'] ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['id']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['order_id']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['book_id']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['bookName']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['author']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['publisher']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['price']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['quantity']) ?></td>
+                        <td><?php echo htmlspecialchars($rowTotal) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['created_at']) ?></td>
+                        <td><?php echo htmlspecialchars($orderDetail['update_at']) ?></td>
                     </tr>
                 <?php endforeach; ?>
                 <tr>
                     <td colspan="8"><b>Order Total Price</b></td>
-                    <td colspan="3"><?php echo $totalPrice ?></td>
+                    <td colspan="3"><?php echo htmlspecialchars($totalPrice) ?></td>
                 </tr>
             </tbody>
         </table>

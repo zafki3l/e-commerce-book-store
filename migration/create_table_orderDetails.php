@@ -10,8 +10,12 @@
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-        CONSTRAINT FK_01_orderDetails FOREIGN KEY (order_id) REFERENCES orders (id),
+        CONSTRAINT FK_01_orderDetails FOREIGN KEY (order_id) REFERENCES orders (id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE,
         CONSTRAINT FK_02_orderDetails FOREIGN KEY (book_id) REFERENCES books (id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
     )";
 
     $query = mysqli_query($conn, $sql);

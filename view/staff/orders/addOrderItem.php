@@ -30,7 +30,7 @@
         <h2>Add order item</h2>
 
         <form action="/bookStore/backend/orders/addOrderItem.php" method="post">
-            <input type="hidden" name="order_id" value="<?php echo $_GET['id']; ?>">
+            <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($_GET['id']) ?>">
             <input type="text" name="book_id" id="book_id" placeholder="book id" required>
             <br>
             <input type="text" name="price" id="price" placeholder="price" required>

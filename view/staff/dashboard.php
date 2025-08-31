@@ -28,7 +28,7 @@
     <!--Main content-->
     <div class="main-content">
         <h2>THIS IS STAFF DASHBOARD</h2>
-        <h3>WELCOME, <?php echo $username; ?></h3>
+        <h3>WELCOME, <?php echo htmlspecialchars($username); ?></h3>
         <br>
         <a href="books/bookIndex.php">Book Management</a>
         <br>

@@ -32,10 +32,10 @@
         $tmp = explode(".", $image_name);
 
         //Kiểm tra nếu người dùng nhập file có đuôi file lạ
-        if (end($tmp) != 'png' && end($tmp) != 'jpg' && end($tmp) != 'jpeg') {
+        if (end($tmp) != 'png' && end($tmp) != 'jpg' && end($tmp) != 'jpeg'
+            && end($tmp) != 'PNG' && end($tmp) != 'JPG' && end($tmp) != 'JPEG') {
             die('File type not allowed');
         }
-
         $newFileName = round(microtime(true)) . '.' . end($tmp);
 
         $uploadPath = "C:/xampp/htdocs/bookStore/public/images/" . $newFileName;

@@ -9,6 +9,8 @@
         update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
         CONSTRAINT FK_01_orders FOREIGN KEY (user_id) REFERENCES users (id)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
     )";
 
     $query = mysqli_query($conn, $sql);
