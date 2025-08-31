@@ -1,21 +1,23 @@
 <?php 
     include('../connect.php');
+    //Lưu dữ liệu nhập vào của user vào biến
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = hash('sha256', $_POST['password']);
     $role = $_POST['role'];
     $id = $_POST['id'];
 
-    $sql = "UPDATE users 
-            SET username = '$username', 
-                email = '$email',
-                password = '$password',
-                role = '$role'
-            WHERE id = '$id'";
+    //Sử dụng prepared statement để chống SQL Injection
+    $stmt = $mysqli->prepare(
+        "UPDATE users
+        SET username = ?, 
+            email = ?,
+            role = ?
+        WHERE id = ?"
+    );
 
-    $query = mysqli_query($conn, $sql);
-
-    if ($query) {
+    //Truyền dữ liệu nhập vào của user vào câu truy vấn và thực thi câu truy vấn đó
+    $stmt->bind_param('sssi', $username, $email, $role, $id);
+    if ($stmt->execute()) {
         header('Location: ../../view/admin/dashboard.php');
         exit();
     }

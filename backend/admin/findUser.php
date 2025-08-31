@@ -1,24 +1,40 @@
 <?php 
     include(__DIR__ . '/../connect.php');
-    function getFindUser($conn)
+    function getFindUser($mysqli)
     {
-        $user = $_POST['user'] ?? '';
-        $result = [];
+        $data = [];
 
-        $sql = "SELECT * FROM users
-                WHERE id = '$user'
-                OR username LIKE '%$user%'";
+        //Nếu như người dùng nhập vào thì trả ra kết quả tìm kiếm
+        if (isset($_POST['user'])) {
+            //Lưu dữ liệu nhập vào
+            $user_input = $_POST['user'];
+            $user_id = $user_input;
+            $username = "%$user_input%";
 
-        $query = mysqli_query($conn, $sql);
+            //Sử dụng prepared statement để chống SQL Injection
+            $stmt = $mysqli->prepare(
+                "SELECT * FROM users
+                WHERE id = ?
+                OR username LIKE ?"
+            );
 
-        if (!$query) {
-            echo "ERROR<br>";
-        } else {
-            while ($value = mysqli_fetch_assoc($query)) {
-                $result[] = $value;
-            }
+            /**
+             * - Truyền tham số nhập vào của user vào câu truy vấn
+             * - Thực thi câu truy vấn
+             * - Lấy ra kết quả và chuyển thành mảng kết hợp (Associative Array)
+             */
+            $stmt->bind_param('is', $user_id, $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        } else { //Chưa thì vẫn hiển thị tất cả kết quả
+            $sql = $mysqli->query(
+                "SELECT * FROM users"
+            );
+
+            $data = $sql->fetch_all(MYSQLI_ASSOC);
         }
 
-        return $result;
+        return $data;
     }
 ?>
