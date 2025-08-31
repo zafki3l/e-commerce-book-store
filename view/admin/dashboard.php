@@ -14,7 +14,7 @@
 
     $username = $_SESSION['username'];
 
-    $userList = getFindUser($conn);
+    $userList = getFindUser($mysqli);
 ?>
 
 <!DOCTYPE html>

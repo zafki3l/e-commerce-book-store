@@ -22,15 +22,28 @@
 
 <?php
     include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
-    function findUser($conn)
+    //Hàm findUser để sửa user theo id
+    function findUser($mysqli)
     {
-        $id = (int) $_GET['id']; 
+        //Lấy id user thông qua form nhập
+        $id = $_GET['id']; 
 
-        $sql = "SELECT * FROM users WHERE id = '$id'";
+        //Sử dụng prepared statement để chống SQL Injection
+        $stmt = $mysqli->prepare(
+            "SELECT * FROM users WHERE id = ?"
+        );
 
-        $query = mysqli_query($conn, $sql);
-        $user = mysqli_fetch_assoc($query);
+        /**
+         * - Truyền id nhập vào từ form vào câu truy vấn
+         * - Thực thi truy vấn
+         * - Lấy ra kết quả truy vấn
+         * - Chuyển thành mảng kết hợp (Associative Array)
+         */
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
 
-        return $user;
+        return $data;
     }
 ?>
