@@ -1,9 +1,9 @@
 <?php 
     include('../connect.php');
-    $username = $_POST['username'];
-    $email = $_POST['email'];
+    $username = (string) $_POST['username'];
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = hash('sha256', $_POST['password']);
-    $role = $_POST['role'];
+    $role = (int) $_POST['role'];
 
     $sql = "INSERT INTO users(username, email, password, role)
             VALUES ('$username', '$email', '$password', '$role')";

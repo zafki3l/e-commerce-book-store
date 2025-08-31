@@ -4,7 +4,7 @@
     $sql = 'CREATE TABLE users (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) NOT NULL,
-        email VARCHAR(50) NOT NULL UNIQUE,
+        email VARCHAR(50) NOT NULL UNIQUE, 
         password VARCHAR(256) NOT NULL,
         role TINYINT NOT NULL DEFAULT(1), # 1 - user, 2 - staff, 3 - admin
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

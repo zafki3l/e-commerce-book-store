@@ -6,7 +6,7 @@
         $result = [];
 
         $sql = "SELECT * FROM users
-            WHERE id = '$user'
+                WHERE id = '$user'
                 OR username LIKE '%$user%'";
 
         $query = mysqli_query($conn, $sql);
