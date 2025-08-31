@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/auth/login.css">
+    <link rel="stylesheet" href="../../public/css/admin/editUser.css">
     <title>Edit user</title>
 </head>
 <body>

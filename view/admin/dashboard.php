@@ -22,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/auth/login.css">
+    <link rel="stylesheet" href="../../public/css/admin/dashboard.css">
     <title>Document</title>
 </head>
 <body>
@@ -48,7 +48,6 @@
                     <th>User ID</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Role</th>
                     <th>Created at</th>
                     <th>Updated at</th>
@@ -60,7 +59,6 @@
                         <td><?php echo $user['id'] ?></td>
                         <td><?php echo $user['username'] ?></td>
                         <td><?php echo $user['email'] ?></td>
-                        <td><?php echo $user['password'] ?></td>
                         <td>
                             <?php 
                                 if ($user['role'] == 1) {
