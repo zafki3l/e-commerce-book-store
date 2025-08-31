@@ -1,41 +1,28 @@
 <?php 
     include(__DIR__ . '/../connect.php');
     
-    function monthlyReport($conn) 
+    function monthlyReport($mysqli) 
     {
-        $totalPrice = 0;
-        if (empty($_POST['month'])) {
-            $month = date('m');
-
-            $sql = "SELECT SUM(od.price * od.quantity) as 'TotalPrice' FROM orders o
+        //Sử dụng prepared statement để chống SQL Injection
+        $stmt = $mysqli->prepare(
+            "SELECT SUM(od.price * od.quantity) as 'TotalPrice' 
+            FROM orders o
             JOIN orderDetails od ON o.id = od.order_id 
-            WHERE MONTH(o.created_at) = '$month'";
+            WHERE MONTH(o.created_at) = ?"
+        );
 
-            $query = mysqli_query($conn, $sql);
+        $month = (empty($_POST['month'])) ? date('m') : $_POST['month'];
 
-            if ($query && mysqli_num_rows($query) > 0) {
-                $value = mysqli_fetch_assoc($query);
-                $totalPrice = $value['TotalPrice'];
-            } else {
-                $totalPrice = 0;
-            }
-        } else {
-            $month = $_POST['month'];
-    
-            $sql = "SELECT SUM(od.price * od.quantity) as 'TotalPrice' FROM orders o
-                    JOIN orderDetails od ON o.id = od.order_id 
-                    WHERE MONTH(o.created_at) = '$month'";
+        /**
+         * - Truyền dữ liệu vào câu truy vấn và thực thi nó
+         * - Lấy ra kết quả truy vấn
+         * - Chuyển kết quả thành mảng kết hợp (Associative Array)
+         */
+        $stmt->bind_param('i', $month);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $data = $result->fetch_assoc();
 
-            $query = mysqli_query($conn, $sql);
-
-            if ($query && mysqli_num_rows($query) > 0) {
-                $value = mysqli_fetch_assoc($query);
-                $totalPrice = $value['TotalPrice'];
-            } else {
-                $totalPrice = 0;
-            }
-        }
-
-        return $totalPrice;
+        return $data['TotalPrice'] ?? 0;
     }
 ?>

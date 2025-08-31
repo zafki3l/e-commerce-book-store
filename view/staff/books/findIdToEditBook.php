@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/auth/login.css">
+    <link rel="stylesheet" href="\bookStore\public\css\staff\books\findIdToEditBook.css">
     <title>Find ID to edit book</title>
 </head>
 <body>
@@ -21,17 +21,4 @@
 </body>
 </html>
 
-<?php
-    include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
-    function findBook($conn)
-    {
-        $id = (int) $_GET['id']; 
-
-        $sql = "SELECT * FROM books WHERE id = $id";
-
-        $query = mysqli_query($conn, $sql);
-        $book = mysqli_fetch_assoc($query);
-
-        return $book;
-    }
-?>
+<?php include('C:\xampp\htdocs\bookStore\backend\books\findIdToEditBook.php') ?>

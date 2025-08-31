@@ -39,7 +39,7 @@
         </form>
         <br>
         <a href="addUser.php">Add user</a>
-        <a href="findIdtoEditUser.php">Edit user</a>
+        <a href="editUser.php">Edit user</a>
         <a href="deleteUser.php">Delete user</a>
         
         <table border="1">
@@ -61,17 +61,13 @@
                         <td><?php echo $user['email'] ?></td>
                         <td>
                             <?php 
-                                if ($user['role'] == 1) {
-                                    echo "User";
+                                switch ($user['role']) {
+                                    case 1: $roleName = 'User'; break;
+                                    case 2: $roleName = 'Staff'; break;
+                                    case 3: $roleName = 'Admin'; break;
+                                    default: echo "Unknown";
                                 }
-
-                                if ($user['role'] == 2) {
-                                    echo "Staff";
-                                }
-
-                                if ($user['role'] == 3) {
-                                    echo "Admin";
-                                }
+                                echo $roleName;
                             ?>
                         </td>
                         <td><?php echo $user['created_at'] ?></td>

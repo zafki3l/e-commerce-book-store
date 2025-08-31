@@ -1,13 +1,16 @@
 <?php
-    include('../connect.php');
+    include_once __DIR__ . '/../connect.php';
+    //Lưu id nhập vào từ form vào biến $id
     $id = $_POST['id'];
 
-    $sql = "DELETE FROM books
-            WHERE id = '$id'";
+    //Sử dụng prepared statement để chống SQL Injection
+    $stmt = $mysqli->prepare("DELETE FROM books WHERE id = ?");
     
-    $query = mysqli_query($conn, $sql);
+    //Truyền id nhập vào vào câu truy vấn
+    $stmt->bind_param('i', $id);
 
-    if ($query) {
+    //Nếu thực thi thành công thì trả về trang bookIndex
+    if ($stmt->execute()) {
         header('Location: ../../view/staff/books/bookIndex.php');
         exit();
     }

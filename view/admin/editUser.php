@@ -3,7 +3,7 @@
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
     include('findIdtoEditUser.php');
 
-    $user = findUser($mysqli);
+    $user = findIdtoEditUser($mysqli);
 ?>
 
 <!DOCTYPE html>

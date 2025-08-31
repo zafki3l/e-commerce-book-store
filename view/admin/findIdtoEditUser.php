@@ -20,30 +20,4 @@
 </body>
 </html>
 
-<?php
-    include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
-    //Hàm findUser để sửa user theo id
-    function findUser($mysqli)
-    {
-        //Lấy id user thông qua form nhập
-        $id = $_GET['id']; 
-
-        //Sử dụng prepared statement để chống SQL Injection
-        $stmt = $mysqli->prepare(
-            "SELECT * FROM users WHERE id = ?"
-        );
-
-        /**
-         * - Truyền id nhập vào từ form vào câu truy vấn
-         * - Thực thi truy vấn
-         * - Lấy ra kết quả truy vấn
-         * - Chuyển thành mảng kết hợp (Associative Array)
-         */
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $data = $result->fetch_assoc();
-
-        return $data;
-    }
-?>
+<?php include('C:\xampp\htdocs\bookStore\backend\admin\findIdToEditUser.php') ?>

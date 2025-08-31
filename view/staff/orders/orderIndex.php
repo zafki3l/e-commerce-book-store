@@ -2,35 +2,22 @@
     session_start();
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
     include('C:\xampp\htdocs\bookStore\backend\orders\findOrder.php');
+    include('C:\xampp\htdocs\bookStore\backend\orders\getOrderTotalPriceById.php');
 
-
+    //Kiểm tra người dùng đã đăng nhập chưa
     if (!isset($_SESSION['id'])) {
         header('Location: /bookStore/view/auth/login.php');
         exit();
     }
 
+    //Nếu như role = 1 thì chặn quyền truy cập
     if ($_SESSION['role'] == 1) {
         exit('You do not have permission to access this site!');
     }
 
     $username = $_SESSION['username'];
 
-    //Tính tổng của tất cả orderItem trong order
-    function getOrderTotalPriceById($conn, $order_id) {
-        $sql = "SELECT SUM(price * quantity) as TotalPrice 
-                FROM orderDetails 
-                WHERE order_id = $order_id";
-        $query = mysqli_query($conn, $sql);
-
-        if ($query && mysqli_num_rows($query) > 0) {
-            $value = mysqli_fetch_assoc($query);
-            return $value['TotalPrice'] ?? 0;
-        }
-
-        return 0;
-    }
-
-    $orderList = getFindOrder($conn);
+    $orderList = getFindOrder($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +37,7 @@
         <h2>THIS IS ORDER MANAGEMENT</h2>
         <h3>WELCOME, <?php echo $username; ?></h3>
         <form action="orderIndex.php" method="post">
-            <input type="text" name="order" id="order" placeholder="Find order by order id or user id">
+            <input type="text" name="id" id="id" placeholder="Find order by order id">
             <input type="submit">
         </form>
         <br>
@@ -63,6 +50,7 @@
                 <tr>
                     <th>Order ID</th>
                     <th>User ID</th>
+                    <th>User Name</th>
                     <th>Total Price</th>
                     <th>Status</th>
                     <th>Created at</th>
@@ -76,18 +64,17 @@
                         <tr>
                             <td><?php echo $order['id'] ?></td>
                             <td><?php echo $order['user_id'] ?></td>
-                            <td><?php echo getOrderTotalPriceById($conn, $order['id']) ?></td>
+                            <td><?php echo $order['username'] ?></td>
+                            <td><?php echo getOrderTotalPriceById($mysqli, $order['id']) ?></td>
                             <td>
                                 <?php 
-                                    if ($order['status'] == 1) {
-                                        echo 'pending';
-                                    } else if ($order['status'] == 2) {
-                                        echo 'being delivered';
-                                    } else if ($order['status'] == 3) {
-                                        echo 'completed';
-                                    } else {
-                                        echo 'unknown';
+                                    switch($order['status']) {
+                                        case 1: $statusName = 'Pending'; break;
+                                        case 2: $statusName = 'Being delivered'; break;
+                                        case 3: $statusName = 'Completed'; break;
+                                        default: echo 'Unknown';
                                     }
+                                    echo $statusName;
                                 ?>
                             </td>
                             <td><?php echo $order['created_at'] ?></td>

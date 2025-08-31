@@ -1,22 +1,50 @@
 <?php 
-    include('../connect.php');
+    include_once __DIR__ . '/../connect.php';
 
     if (isset($_POST['edit'])) {
-        if (!empty($_FILES['bookCover']['name'])) {
-            $id = $_POST['id'];
-            $bookName = mysqli_real_escape_string($conn, $_POST['bookName']);
-            $author = mysqli_real_escape_string($conn, $_POST['author']);
-            $publisher = mysqli_real_escape_string($conn, $_POST['publisher']);
-            $category = mysqli_real_escape_string($conn, $_POST['category']);
-            $description = mysqli_real_escape_string($conn, $_POST['description']);
-            $price = mysqli_real_escape_string($conn, $_POST['price']);
-            $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
-            $bookCover = $_POST['bookCover'];
-            $status = (int) (($quantity > 0) ? "1" : "0");
+        //Lưu dữ liệu nhập vào vào biến
+        $id = $_POST['id'];
+        $bookName = $_POST['bookName'];
+        $author = $_POST['author'];
+        $publisher = $_POST['publisher'];
+        $category = $_POST['category'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $quantity = $_POST['quantity'];
+        $bookCover = $_POST['bookCover'];
+        $status = (int) (($quantity > 0) ? "1" : "0"); // 0 - hết hàng, 1 - còn hầng
 
+        //Sử dụng prepared statement để chống SQL Injection
+        $stmt = $mysqli->prepare(
+                "UPDATE books
+                SET bookName = ?,
+                    author = ?,
+                    publisher = ?,
+                    category = ?,
+                    description = ?,
+                    price = ?,
+                    quantity = ?,
+                    status = ?,
+                    bookCover = ?
+                WHERE id = ?"
+            );
+
+        //Nếu như đã upload file
+        if (!empty($_FILES['bookCover']['name'])) {
+            /**
+             * - Lấy tên file gốc mà người dùng nhập từ form html
+             * - Tách tên file theo dấu . (Ví dụ: 'myimg.png' => ['myimg', 'png'])
+             * - Tạo tên file mới để tránh trùng lặp
+             * - Chuyển file đến đường dẫn C:/xampp/htdocs/bookStore/public/images/
+             */
             $image_name = $_FILES['bookCover']['name'];
 
             $tmp = explode(".", $image_name);
+
+            //Kiểm tra nếu người dùng nhập lên một file có đuôi file lạ
+            if (end($tmp) != 'png' && end($tmp) && 'jpg' && end($tmp) != 'jpeg') {
+                die('File type not allowed');
+            }
 
             $newFileName = round(microtime(true)) . '.' . end($tmp);
 
@@ -24,54 +52,37 @@
 
             move_uploaded_file($_FILES['bookCover']['tmp_name'], $uploadPath);
 
-            $sql = "UPDATE books
-                    SET bookName = '$bookName',
-                        author = '$author',
-                        publisher = '$publisher',
-                        category = '$category',
-                        description = '$description',
-                        price = '$price',
-                        quantity = '$quantity',
-                        status = '$status',
-                        bookCover = '$newFileName'
-                    WHERE id = '$id'";
+            //Truyền dữ liệu nhập vào vào câu truy vấn
+            $stmt->bind_param('sssssdiisi', $bookName, $author, $publisher, $category, $description, $price, $quantity, $status, $newFileName, $id);
+        } else { //Nếu chưa upload thì gán bookCover bằng giá trị cũ
+            //Sử dụng prepared statement để lấy ra giá trị cũ của bookCover
+            $query = $mysqli->prepare(
+                "SELECT bookCover FROM books
+                WHERE id = ?"
+            );
 
-            $query = mysqli_query($conn, $sql);
+            /**
+             * - Truyền id nhập vào vào câu truy vấn 
+             * - Thực thi truy vấn
+             * - Sử dụng get_result() để lấy ra kết quả
+             * - Chuyển thành mảng kết hợp (Associative Array)
+             */
+            $query->bind_param('i', $id);
+            $query->execute();
+            $result = $query->get_result();
+            $data = $result->fetch_assoc();
 
-            if ($query) {
-                header('Location: ../../view/staff/books/bookIndex.php');
-                exit();
-            }
-        } else {
-            $id = $_POST['id'];
-            $bookName = mysqli_real_escape_string($conn, $_POST['bookName']);
-            $author = mysqli_real_escape_string($conn, $_POST['author']);
-            $publisher = mysqli_real_escape_string($conn, $_POST['publisher']);
-            $category = mysqli_real_escape_string($conn, $_POST['category']);
-            $description = mysqli_real_escape_string($conn, $_POST['description']);
-            $price = mysqli_real_escape_string($conn, $_POST['price']);
-            $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
-            $bookCover = $_POST['oldBookCover'];
-            $status = (int) (($quantity > 0) ? "1" : "0");
+            // Giữ ảnh bìa của sách nếu như ko upload
+            $bookCover = $data['bookCover'];
 
-            $sql = "UPDATE books
-                    SET bookName = '$bookName',
-                        author = '$author',
-                        publisher = '$publisher',
-                        category = '$category',
-                        description = '$description',
-                        price = '$price',
-                        quantity = '$quantity',
-                        status = '$status',
-                        bookCover = '$bookCover'
-                    WHERE id = '$id'";
+            //Truyền dữ liệu nhập vào vào câu truy vấn
+            $stmt->bind_param('sssssdiisi', $bookName, $author, $publisher, $category, $description, $price, $quantity, $status, $bookCover, $id);
+        }
 
-            $query = mysqli_query($conn, $sql);
-
-            if ($query) {
-                header('Location: ../../view/staff/books/bookIndex.php');
-                exit();
-            }
+        //Thực thi truy vấn thành công thì chuyển về trang bookIndex
+        if ($stmt->execute()) {
+            header('Location: ../../view/staff/books/bookIndex.php');
+            exit();
         }
     }
 ?>

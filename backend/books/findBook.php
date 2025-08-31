@@ -1,26 +1,42 @@
 <?php 
-    include(__DIR__ . '/../connect.php');
-    function getFindBook($conn)
+    include_once __DIR__ . '/../connect.php';
+    function getFindBook($mysqli)
     {
-        $book = $_POST['book'] ?? '';
-        $result = [];
+        $data = [];
 
-        $sql = "SELECT * FROM books
-            WHERE id = '$book'
-                OR bookName LIKE '%$book%'
-                OR author LIKE '%$book%'
-                OR publisher LIKE '%$book%'";
+        //Nếu như ô tìm kiếm đã được nhập dữ liệu vào thì tìm kiếm
+        if (isset($_POST['book'])) {
+            //Lưu dữ liệu nhập vào của user vào biến
+            $book = $_POST['book'];
+            $book_id = $book;
+            $bookName = "%$book%";
+            $author = "%$book%";
+            $publisher = "%$book%";
 
-        $query = mysqli_query($conn, $sql);
+            //Sử dụng prepared statement để chống SQL Injection
+            $stmt = $mysqli->prepare(
+            "SELECT * FROM books
+            WHERE id = ?
+                OR bookName LIKE ?
+                OR author LIKE ?
+                OR publisher LIKE ?"
+            );
 
-        if (!$query) {
-            echo "ERROR<br>";
-        } else {
-            while ($value = mysqli_fetch_assoc($query)) {
-                $result[] = $value;
-            }
+            /**
+             * - Truyền dữ liệu vào câu truy vấn và thực thi nó
+             * - Lấy ra kết quả truy vấn
+             * - Chuyển kết quả thành mảng kết hợp (Associative Array)
+             */
+            $stmt->bind_param('isss', $book_id, $bookName, $author, $publisher);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        } else { //Ngược lại, nếu chưa nhập thì vẫn hiển thị tất cả hàng trong bảng books
+            $sql = $mysqli->query("SELECT * FROM books");
+
+            $data = $sql->fetch_all(MYSQLI_ASSOC);
         }
 
-        return $result;
+        return $data;
     }
 ?>

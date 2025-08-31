@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\bookStore\public\css\auth\login.css">
+    <link rel="stylesheet" href="\bookStore\public\css\staff\orders\findIdToEditOrder.css">
     <title>Add user</title>
 </head>
 <body>
@@ -24,17 +24,4 @@
 </body>
 </html>
 
-<?php
-    include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
-    function findOrder($conn)
-    {
-        $id = $_GET['id'] ?? '1'; 
-
-        $sql = "SELECT * FROM orders WHERE id = $id";
-
-        $query = mysqli_query($conn, $sql);
-        $book = mysqli_fetch_assoc($query);
-
-        return $book;
-    }
-?>
+<?php include('C:\xampp\htdocs\bookStore\backend\orders\findIdToEditOrder.php') ?>

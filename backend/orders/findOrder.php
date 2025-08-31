@@ -1,41 +1,39 @@
 <?php 
-    include(__DIR__ . '/../connect.php');
-    function getFindOrder($conn)
+    include_once __DIR__ . '/../connect.php';
+    function getFindOrder($mysqli)
     {
-        $book = $_POST['order'] ?? '';
-        $result = [];
+        $data = [];
 
-        if ($book != '') {
-            $sql = "SELECT * FROM orders
-            WHERE id = '$book'
-                OR user_id = '$book'
-                OR status = '$book'";
+        //Nếu như nút tìm có người bấm nút tìm kiếm
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            //Sử dụng prepared statement để chống SQL Injection
+            $stmt = $mysqli->prepare(
+                "SELECT o.id, o.user_id, u.username, o.status, o.created_at, o.update_at 
+                FROM orders o
+                INNER JOIN users u ON o.user_id = u.id 
+                WHERE id = ?"
+            );
+        
+            /**
+             * - Truyền dữ liệu vào câu truy vấn và thực thi nó
+             * - Lấy ra kết quả truy vấn
+             * - Chuyển kết quả thành mảng kết hợp (Associative Array)
+             */
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        } else { //Nếu nút tìm kiếm chưa dc bấm thì vẫn hiển thị tất cả kết quả
+            $sql = $mysqli->query(
+                "SELECT o.id, o.user_id, u.username, o.status, o.created_at, o.update_at 
+                FROM orders o
+                INNER JOIN users u ON o.user_id = u.id"
+            );
 
-            $query = mysqli_query($conn, $sql);
-
-            if (!$query) {
-                echo "ERROR<br>";
-            } else {
-                while ($value = mysqli_fetch_assoc($query)) {
-                    $result[] = $value;
-                }
-            }
-
-            return $result;
-        } else {
-            $sql = "SELECT * FROM orders";
-
-            $query = mysqli_query($conn, $sql);
-
-            if (!$query) {
-                echo "ERROR<br>";
-            } else {
-                while ($value = mysqli_fetch_assoc($query)) {
-                    $result[] = $value;
-                }
-            }
-
-            return $result;
+            $data = $sql->fetch_all(MYSQLI_ASSOC);
         }
+
+        return $data;
     }
 ?>

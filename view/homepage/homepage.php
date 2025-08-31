@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $username = $_SESSION['username'] ?? ''; // lỗi nếu chưa gọi session_start()
+    $username = $_SESSION['username'] ?? ''; 
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/auth/login.css">
+    <link rel="stylesheet" href="../../public/css/homepage/homepage.css">
     <title>Document</title>
 </head>
 <body>

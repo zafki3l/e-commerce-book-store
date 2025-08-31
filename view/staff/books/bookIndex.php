@@ -14,7 +14,7 @@
     }
 
     $username = $_SESSION['username'];
-    $bookList = getFindBook($conn);
+    $bookList = getFindBook($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bookStore/public/books/indexBook.css">
+    <link rel="stylesheet" href="\bookStore\public\css\staff\books\bookIndex.css">
     <title>Index Book</title>
 </head>
 <body>
@@ -39,7 +39,7 @@
         </form>
         <br>
         <a href="addBook.php">Add book</a>
-        <a href="findIdToEditBook.php">Edit Book</a>
+        <a href="editBook.php">Edit Book</a>
         <a href="deleteBook.php">Delete Book</a>
 
         

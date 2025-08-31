@@ -13,7 +13,7 @@
         exit('You do not have permission to access this site!');
     }
 
-    $order = findOrder($conn);
+    $order = findIdToEditOrder($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\bookStore\public\css\auth\login.css">
+    <link rel="stylesheet" href="\bookStore\public\css\staff\orders\editOrder.css">
     <title>Edit order</title>
 </head>
 <body>

@@ -1,6 +1,8 @@
 <?php
     session_start();
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
+    include('C:\xampp\htdocs\bookStore\backend\orders\getOrderDetailList.php');
+    include('C:\xampp\htdocs\bookStore\backend\orders\getOrderTotalPrice.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: /bookStore/view/auth/login.php');
@@ -14,64 +16,8 @@
     $username = $_SESSION['username'];
     $order_id = $_GET['id'];
 
-    //Xử lý logic truy vấn orderDetails
-    function getOrderDetailList($conn, $order_id) 
-    {
-        $sql = "SELECT od.id, 
-                        od.order_id, 
-                        od.book_id, 
-                        b.bookName, 
-                        b.author, 
-                        b.publisher,
-                        od.price,
-                        od.quantity,
-                        od.created_at,
-                        od.update_at
-        FROM orderDetails od
-        INNER JOIN orders o ON od.order_id = o.id
-        INNER JOIN books b ON od.book_id = b.id 
-        WHERE o.id = '$order_id'";
-        $result = [];
-
-        $query = mysqli_query($conn, $sql);
-
-        if (!$query) {
-            echo "ERROR<br>";
-        } else {
-            while ($value = mysqli_fetch_assoc($query)) {
-                $result[] = $value;
-            }
-        }
-
-        return $result;
-    }
-
-    //Tính tổng của tất cả orderItem trong order
-    function getOrderTotalPrice($conn, $order_id) 
-    {
-        $totalPrice = 0;
-
-        $sql = "SELECT order_id, SUM(price * quantity) as 'TotalPrice'
-                FROM orderDetails
-                WHERE order_id = '$order_id'
-                GROUP BY order_id";
-
-        $query = mysqli_query($conn, $sql);
-
-        if (!$query) {
-            echo "ERROR<br>";
-        } else {
-            if ($query && mysqli_num_rows($query) > 0) {
-                $value = mysqli_fetch_assoc($query);
-                $totalPrice = $value['TotalPrice'];
-            }
-        }
-
-        return $totalPrice;
-    }
-
-    $orderDetailList = getOrderDetailList($conn, $order_id);
-    $totalPrice = getOrderTotalPrice($conn, $order_id);
+    $orderDetailList = getOrderDetailList($mysqli, $order_id);
+    $totalPrice = getOrderTotalPrice($mysqli, $order_id);
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bookStore/public/books/indexBook.css">
+    <link rel="stylesheet" href="\bookStore\public\css\staff\orders\viewOrderDetail.css">
     <title>Order Detail</title>
 </head>
 <body>
@@ -130,7 +76,6 @@
                     <td colspan="8"><b>Order Total Price</b></td>
                     <td colspan="3"><?php echo $totalPrice ?></td>
                 </tr>
-
             </tbody>
         </table>
 

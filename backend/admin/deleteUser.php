@@ -1,5 +1,5 @@
 <?php
-    include('../connect.php');
+    include_once __DIR__ . '/../connect.php';
     //Lưu id nhập vào từ form
     $id = $_POST['id'];
 

@@ -1,5 +1,5 @@
 <?php 
-    include(__DIR__ . '/../connect.php');
+    include_once __DIR__ . '/../connect.php';
     function getFindUser($mysqli)
     {
         $data = [];
@@ -28,9 +28,7 @@
             $result = $stmt->get_result();
             $data = $result->fetch_all(MYSQLI_ASSOC);
         } else { //Chưa thì vẫn hiển thị tất cả kết quả
-            $sql = $mysqli->query(
-                "SELECT * FROM users"
-            );
+            $sql = $mysqli->query("SELECT * FROM users");
 
             $data = $sql->fetch_all(MYSQLI_ASSOC);
         }

@@ -1,5 +1,5 @@
 <?php 
-    include('../connect.php');
+    include_once __DIR__ . '/../connect.php';
 
     //Lưu dữ liệu nhập vào của user
     $username = (string) $_POST['username'];

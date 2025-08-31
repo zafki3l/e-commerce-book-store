@@ -3,7 +3,7 @@
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
     include('findIdToEditBook.php');
 
-    $book = findBook($conn);
+    $book = findIdToEditBook($mysqli);
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
@@ -20,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\bookStore\public\css\auth\login.css">
+    <link rel="stylesheet" href="\bookStore\public\css\staff\books\editBook.css">
     <title>Add user</title>
 </head>
 <body>
