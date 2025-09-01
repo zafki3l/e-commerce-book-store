@@ -2,7 +2,7 @@
 .main-content {
     background-color: #ca122f;
     flex: 1;
-    padding: 100px 0; 
+    padding-top: 100px;
 }
 
 html, body {
@@ -31,14 +31,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f4f4f4; /* Màu nền nhẹ nhàng */
+    background-color: #faf9ea; 
     color: #333;
 }
 
 main {
     padding: 2rem;
-    max-width: 1200px; /* Giới hạn chiều rộng nội dung */
-    margin: 0 auto; /* Căn giữa nội dung */
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
 .book-section {
@@ -60,10 +60,13 @@ main {
     grid-template-columns: repeat(5, minmax(200px, 1fr)); /* Tự động chia cột linh hoạt */
     gap: 1.5rem; /* Khoảng cách giữa các item */
     justify-content: center; /* Căn giữa các item nếu không đủ lấp đầy hàng */
+    padding-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .book-item {
-    background-color: white;
+    background-color: #faf9ea;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;

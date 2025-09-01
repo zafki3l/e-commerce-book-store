@@ -22,9 +22,13 @@ body {
 
 /* Phần footer */
 .footer {
-    background-color: #faf9ea;
-    color: #111014;
+  background-color: #faf9ea; /* footer be */
+  color: #111014;
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #ddd;
 }
+
 footer {
     text-align: center;
     margin-top: 40px;

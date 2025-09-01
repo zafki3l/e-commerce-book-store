@@ -43,8 +43,8 @@
         </ul>
         <ul type="none" class="user-menu">
             <div class="search-bar">
-                <form action="#" method="get">
-                    <input type="text" name="name" placeholder="Search books..."/>
+                <form action="\bookStore\backend\searchBar\searchBar.php" method="get">
+                    <input type="text" name="search" placeholder="Search books..."/>
                 </form>
             </div>
         </ul>

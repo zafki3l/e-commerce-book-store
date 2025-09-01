@@ -42,7 +42,7 @@
         $_SESSION['email'] = $data['email'];
         $_SESSION['role'] = $data['role'];
 
-        header('Location: ../../view/homepage/homepage.php');
+        header('Location: ../../view/homepage/index.php');
         exit();
     }
 ?>

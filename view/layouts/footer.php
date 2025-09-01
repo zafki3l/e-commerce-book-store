@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="footer">
-        <hr>
         <ul class="bottom">
             <li>
                 <p>About us</p>
