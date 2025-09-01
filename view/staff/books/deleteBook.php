@@ -1,4 +1,15 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+
+    if (!isset($_SESSION['id'])) {
+        header('Location: ../auth/login.php');
+        exit();
+    }
+
+    if ($_SESSION['role'] == 1) {
+        exit('You do not have permission to access this site!');
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">

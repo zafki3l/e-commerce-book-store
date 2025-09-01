@@ -28,8 +28,8 @@
     $result = $stmt->get_result();
     $data = $result->fetch_assoc();
 
-    /**
-     * Kiểm tra thông tin đăng nhập
+    /** 
+     * - Kiểm tra thông tin đăng nhập
      * - Nếu user không tồn tại hoặc mật khẩu không trùng khớp -> chuyển về trang login kèm error = 1
      * - Nếu thông tin nhập vào đúng thì lưu thông tin user vào SESSION
      */
