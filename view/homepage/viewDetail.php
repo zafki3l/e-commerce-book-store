@@ -1,0 +1,24 @@
+<?php include('C:\xampp\htdocs\bookStore\backend\viewDetail.php'); ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo htmlspecialchars($book['bookName']); ?></title>
+    <link rel="stylesheet" href="../../public/css/homepage/bookDetail.css">
+</head>
+<body>
+    <?php if ($book): ?>
+        <div class="book-detail">
+            <img src="../../public/images/<?php echo htmlspecialchars($book['bookCover']); ?>" 
+                 alt="<?php echo htmlspecialchars($book['bookName']); ?>">
+            <h2><?php echo htmlspecialchars($book['bookName']); ?></h2>
+            <p><strong>Author:</strong> <?php echo htmlspecialchars($book['author']); ?></p>
+            <p><strong>Price:</strong> <?php echo htmlspecialchars($book['price']); ?> VND</p>
+            <p><strong>Description:</strong> <?php echo htmlspecialchars($book['description']); ?></p>
+        </div>
+    <?php else: ?>
+        <p>Book not found!</p>
+    <?php endif; ?>
+</body>
+</html>

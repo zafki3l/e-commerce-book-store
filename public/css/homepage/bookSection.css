@@ -1,0 +1,32 @@
+.btn-view-detail {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-view-detail:hover {
+    background-color: #0056b3;
+}
+
+
+.btn-buy-now {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-buy-now:hover {
+    background-color: #0056b3;
+}

@@ -21,6 +21,16 @@
                 <p><?php echo htmlspecialchars($book['author']) ?></p>
                 <h3><?php echo htmlspecialchars($book['bookName']) ?></h3>
                 <p><?php echo htmlspecialchars($book['price']) ?></p>
+
+                <a href="../homepage/viewDetail.php?id=<?php echo $book['id']; ?>" 
+                    class="btn-view-detail">View Detail</a>
+
+                    <form action="\bookStore\backend\buyNow.php" method="post">
+                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                        <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn-buy-now">Buy now</button>
+                    </form>
             </div>
         <?php endforeach; ?>
     </div>

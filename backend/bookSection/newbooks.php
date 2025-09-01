@@ -2,7 +2,7 @@
     include_once __DIR__ . '/../connect.php';
     
     $sql = $mysqli->query(
-        "SELECT bookName, author, price, bookCover
+        "SELECT id, bookName, author, price, bookCover
         FROM books
         ORDER BY id DESC
         LIMIT 10"

@@ -126,37 +126,6 @@ main {
     margin-top: 0;
 }
 
-.btn-view-detail, .btn-add-to-cart {
-    display: block; /* Mỗi nút một dòng */
-    width: 90%;
-    margin: 0.5rem auto;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
-
-.btn-view-detail {
-    background-color: #007bff; /* Màu xanh dương */
-    color: white;
-}
-
-.btn-view-detail:hover {
-    background-color: #0056b3;
-}
-
-.btn-add-to-cart {
-    background-color: #28a745; /* Màu xanh lá */
-    color: white;
-}
-
-.btn-add-to-cart:hover {
-    background-color: #218838;
-}
-
 /* Responsive cơ bản cho màn hình nhỏ hơn */
 @media (max-width: 768px) {
     .book-grid {
@@ -165,4 +134,20 @@ main {
     .book-item img {
         height: 150px;
     }
+}
+
+.btn-view-detail {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-view-detail:hover {
+    background-color: #0056b3;
 }
