@@ -1,6 +1,7 @@
 <?php 
-    include('C:\xampp\htdocs\bookStore\backend\searchBar\searchBar.php');
-    $books = $data;
+    $result = include('C:\xampp\htdocs\bookStore\backend\searchBar\searchLogic.php');
+    $books = $result['data'];
+    $search = $result['search'];
 ?>
 
 <!DOCTYPE html>
@@ -8,12 +9,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Results</title>
-    <link rel="stylesheet" href="../../public/css/layouts/search.css">
+    <link rel="stylesheet" href="../../public/css/layouts/homepage/homepage.css">
 </head>
 <body>
     <h2>Search results for: <i><?= htmlspecialchars($search) ?></i></h2>
     <div class="book-grid">
-        <?php if (count($books) > 0): ?>
+        <?php if (!empty($books)): ?>
             <?php foreach ($books as $book): ?>
                 <div class="book-item">
                     <img src="../../public/images/<?= htmlspecialchars($book['bookCover']) ?>" alt="<?= htmlspecialchars($book['bookName']) ?>">

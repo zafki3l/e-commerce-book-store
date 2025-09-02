@@ -28,7 +28,7 @@
 
             <div class="nav-right">
                 <?php if(isset($_SESSION['username'])): ?>
-                    <li><a href="#">Account</a></li>
+                    <li><a href="\bookStore\view\myAccount\myAccount.php">Account</a></li>
                     <li>
                         <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                     </li>
@@ -43,7 +43,7 @@
         </ul>
         <ul type="none" class="user-menu">
             <div class="search-bar">
-                <form action="\bookStore\backend\searchBar\searchBar.php" method="get">
+                <form action="\bookStore\view\homepage\searchResult.php" method="get">
                     <input type="text" name="search" placeholder="Search books..."/>
                 </form>
             </div>
