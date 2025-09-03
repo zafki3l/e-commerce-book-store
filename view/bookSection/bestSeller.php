@@ -32,6 +32,12 @@
                         <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
                         <input type="hidden" name="quantity" value="1">
                         <button type="submit" class="btn-buy-now">Buy now</button>
+
+                        <!-- Nếu khách hàng chưa đăng nhập -->
+                        <?php if(!isset($_SESSION['id'])): ?>
+                            <input type="text" name="fullname" placeholder="Username">
+                            <input type="text" name="guest_email" placeholder="Email">
+                        <?php endif; ?>
                     </form>
                 </div>
             <?php endforeach; ?>

@@ -4,7 +4,7 @@
     $sql = $mysqli->query(
         "CREATE TABLE orders (
             id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            user_id INT UNSIGNED NOT NULL,
+            user_id INT UNSIGNED NULL,
             status TINYINT DEFAULT(1), # 1: pending, 2: being delivered, 3: completed
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

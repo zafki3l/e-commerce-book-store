@@ -43,7 +43,7 @@
             </li>
             <li>
                 <p>Follow us at</p>
-                <hr>
+                <hr>    
                 <ul type="none">
                     <li><a href="#">Facebook</a></li>
                     <li><a href="#">Instagram</a></li>

@@ -26,11 +26,17 @@
                     class="btn-view-detail">View Detail</a>
 
                 <form action="\bookStore\backend\buyNow.php" method="post">
-                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                        <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn-buy-now">Buy now</button>
-                    </form>
+                    <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                    <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btn-buy-now">Buy now</button>
+
+                    <!-- Nếu khách hàng chưa đăng nhập -->
+                    <?php if(!isset($_SESSION['id'])): ?>
+                        <input type="text" name="fullname" placeholder="Username">
+                        <input type="text" name="guest_email" placeholder="Email">
+                    <?php endif; ?>
+                </form>
             </div>
         <?php endforeach; ?>
     </div>

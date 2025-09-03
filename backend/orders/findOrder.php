@@ -5,14 +5,15 @@
         $data = [];
 
         //Nếu như nút tìm có người bấm nút tìm kiếm
-        if (isset($_POST['id'])) {
+        if (!empty($_POST['id'])) {
             $id = $_POST['id'];
             //Sử dụng prepared statement để chống SQL Injection
             $stmt = $mysqli->prepare(
                 "SELECT o.id, o.user_id, u.username, o.status, o.created_at, o.update_at 
                 FROM orders o
                 INNER JOIN users u ON o.user_id = u.id 
-                WHERE id = ?"
+                WHERE o.id = ?
+                ORDER BY o.id ASC"
             );
         
             /**
@@ -28,7 +29,8 @@
             $sql = $mysqli->query(
                 "SELECT o.id, o.user_id, u.username, o.status, o.created_at, o.update_at 
                 FROM orders o
-                INNER JOIN users u ON o.user_id = u.id"
+                INNER JOIN users u ON o.user_id = u.id
+                ORDER BY o.id ASC"
             );
 
             $data = $sql->fetch_all(MYSQLI_ASSOC);

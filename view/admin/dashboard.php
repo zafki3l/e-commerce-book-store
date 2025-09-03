@@ -62,6 +62,7 @@
                         <td>
                             <?php 
                                 switch ($user['role']) {
+                                    case 0: $roleName = 'Guest'; break;
                                     case 1: $roleName = 'User'; break;
                                     case 2: $roleName = 'Staff'; break;
                                     case 3: $roleName = 'Admin'; break;
