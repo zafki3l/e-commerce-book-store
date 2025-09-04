@@ -37,6 +37,7 @@
         header('Location: ../../view/auth/login.php?error=1');
         exit();
     } else {
+        // Lưu thông tin của users vào trong Session
         $_SESSION['id'] = $data['id'];
         $_SESSION['username'] = $data['username'];
         $_SESSION['email'] = $data['email'];

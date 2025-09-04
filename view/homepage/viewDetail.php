@@ -18,11 +18,11 @@
             <p><strong>Description:</strong> <?php echo htmlspecialchars($book['description']); ?></p>
 
             <form action="\bookStore\backend\buyNow.php" method="post">
-                        <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                        <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="btn-buy-now">Buy now</button>
-                    </form>
+                <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn-buy-now">Buy now</button>
+            </form>
         </div>
     <?php else: ?>
         <p>Book not found!</p>

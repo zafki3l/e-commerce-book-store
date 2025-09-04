@@ -38,9 +38,7 @@
             <input type="submit">
         </form>
         <br>
-        <a href="addUser.php">Add user</a>
-        <a href="editUser.php">Edit user</a>
-        <a href="deleteUser.php">Delete user</a>
+        <a href="addUser.php">Create user</a>
         
         <table border="1">
             <thead>
@@ -51,6 +49,7 @@
                     <th>Role</th>
                     <th>Created at</th>
                     <th>Updated at</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,6 +72,10 @@
                         </td>
                         <td><?php echo htmlspecialchars($user['created_at']) ?></td>
                         <td><?php echo htmlspecialchars($user['update_at']) ?></td>
+                        <td>
+                            <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
+                            <a href="\bookStore\backend\admin\deleteUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Delete</a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

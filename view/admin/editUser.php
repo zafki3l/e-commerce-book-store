@@ -1,7 +1,7 @@
 <?php 
     session_start();
+    include('C:\xampp\htdocs\bookStore\backend\admin\getUserToEdit.php');
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
-    include('findIdtoEditUser.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
@@ -12,7 +12,7 @@
         exit('You do not have permission to access this site!');
     }
 
-    $user = findIdtoEditUser($mysqli);
+    $user = getUserToEdit($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +24,15 @@
     <title>Edit user</title>
 </head>
 <body>
+    <!-- Header -->
+    <?php include('../layouts/admin/adminHeader.php') ?>
 
     <!--Main content-->
     <div class="main-content">
         <h2>Edit user</h2>
 
         <form action="../../backend/admin/editUser.php" method="post">
-            <input type="text" name="id" id="id" placeholder="id_user" value="<?php echo $user['id'] ?>" required>
+            <input type="text" name="id" id="id" placeholder="id_user" value="<?php echo $user['id'] ?>" readonly>
             <br>
             <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user['username']) ?>" placeholder="Username" required>
             <br>
@@ -39,7 +41,7 @@
             <input type="text" name="role" id="role" value="<?php echo htmlspecialchars($user['role']) ?>" placeholder="Role" required>
             <br>
             <input type="submit">
-            <a href="findIdtoEditUser.php">Cancel</a>
+            <a href="dashboard.php">Cancel</a>
         </form>
     </div>
 </body>
