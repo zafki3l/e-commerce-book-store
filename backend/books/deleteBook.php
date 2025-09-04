@@ -1,10 +1,12 @@
 <?php
     include_once __DIR__ . '/../connect.php';
     //Lưu id nhập vào từ form vào biến $id
-    $id = $_POST['id'];
+    $id = $_GET['id'];
 
     //Sử dụng prepared statement để chống SQL Injection
-    $stmt = $mysqli->prepare("DELETE FROM books WHERE id = ?");
+    $stmt = $mysqli->prepare(
+        "DELETE FROM books WHERE id = ?"
+    );
     
     //Truyền id nhập vào vào câu truy vấn
     $stmt->bind_param('i', $id);

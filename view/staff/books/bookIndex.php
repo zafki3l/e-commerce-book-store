@@ -58,6 +58,7 @@
                     <th>Book Cover</th>
                     <th>Created at</th>
                     <th>Updated at</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +77,10 @@
                             <td><?php echo htmlspecialchars($book['bookCover']) ?></td>
                             <td><?php echo htmlspecialchars($book['created_at']) ?></td>
                             <td><?php echo htmlspecialchars($book['update_at']) ?></td>
+                            <td>
+                                <a href="editBook.php?id=<?php echo htmlspecialchars($book['id']) ?>">Edit</a>
+                                <a href="\bookStore\backend\books\deleteBook.php?id=<?php echo htmlspecialchars($book['id']) ?>">Delete</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tr>

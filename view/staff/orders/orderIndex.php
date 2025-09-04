@@ -37,7 +37,7 @@
         <h2>THIS IS ORDER MANAGEMENT</h2>
         <h3>WELCOME, <?php echo htmlspecialchars($username) ?></h3>
         <form action="orderIndex.php" method="post">
-            <input type="text" name="id" id="id" placeholder="Find order by order id">
+            <input type="text" name="search" id="id" placeholder="Find order by order id">
             <input type="submit">
         </form>
         <br>
@@ -79,7 +79,11 @@
                             </td>
                             <td><?php echo htmlspecialchars($order['created_at']) ?></td>
                             <td><?php echo htmlspecialchars($order['update_at']) ?></td>
-                            <td><a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>">View</a></td>
+                            <td>
+                                <a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>">View</a>
+                                <a href="editOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>">Edit</a>
+                                <a href="\bookStore\backend\orders\deleteOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>">Delete</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tr>

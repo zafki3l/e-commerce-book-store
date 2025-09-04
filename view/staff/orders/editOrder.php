@@ -1,9 +1,8 @@
 <?php 
     session_start();
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
+    include('C:\xampp\htdocs\bookStore\backend\orders\getIdToEditOrder.php');
     
-    include('findIdToEditOrder.php');
-
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
         exit();
@@ -13,7 +12,7 @@
         exit('You do not have permission to access this site!');
     }
 
-    $order = findIdToEditOrder($mysqli);
+    $order = getIdToEditOrder($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +24,8 @@
     <title>Edit order</title>
 </head>
 <body>
+    <!--Header-->
+    <?php include('C:\xampp\htdocs\bookStore\view\layouts\staff\staffHeader.php') ?>
 
     <!--Main content-->
     <div class="main-content">
@@ -32,7 +33,7 @@
 
         <form action="/bookStore/backend/orders/editOrder.php" method="post">
             <label for="">Order id</label>
-            <input type="text" name="id" id="id" value="<?php echo htmlspecialchars($order['id']) ?>" placeholder="Order id">
+            <input type="text" name="id" id="id" value="<?php echo htmlspecialchars($order['id']) ?>" placeholder="Order id" readonly>
             <br>
             <label for="">User id</label>
             <input type="text" name="user_id" id="user_id" value="<?php echo htmlspecialchars($order['user_id']) ?>" placeholder="User id">

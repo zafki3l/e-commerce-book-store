@@ -1,20 +1,11 @@
 <?php
     include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
-    function findIdToEditBook($mysqli)
+    function getIdToEditBook($mysqli)
     {
-        $data = [];
+        $id = $_GET['id'];
         //Sử dụng prepared statement để chống SQL Injection
         $stmt = $mysqli->prepare("SELECT * FROM books WHERE id = ?");
-
-        if(!empty($_GET['id'])) {
-            $id = $_GET['id']; 
-        } else {
-            $sql = $mysqli->query("SELECT * FROM books ORDER BY id LIMIT 1");
-
-            $query = $sql->fetch_assoc();
-            $id = $query['id'];
-        }
-
+     
         /**
          * - Truyền id nhập vào từ form vào câu truy vấn
          * - Thực thi truy vấn
@@ -24,8 +15,8 @@
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $data = $result->fetch_assoc();
+        $book = $result->fetch_assoc();
 
-        return $data;
+        return $book;
     }
 ?>

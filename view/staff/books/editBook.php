@@ -1,9 +1,7 @@
 <?php 
     session_start();
     include('C:\xampp\htdocs\bookStore\backend\connect.php');
-    include('findIdToEditBook.php');
-
-    $book = findIdToEditBook($mysqli);
+    include('C:\xampp\htdocs\bookStore\backend\books\getIdToEditBook.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
@@ -13,6 +11,8 @@
     if ($_SESSION['role'] == 1) {
         exit('You do not have permission to access this site!');
     }
+
+    $book = getIdToEditBook($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +24,16 @@
     <title>Add user</title>
 </head>
 <body>
+    <!--Header-->
+    <?php include('../../layouts/staff/staffHeader.php'); ?>
 
     <!--Main content-->
     <div class="main-content">
         <h2>Edit Book</h2>
 
         <form action="../../../backend/books/editBook.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
+            <input type="text" name="id" value="<?php echo $book['id']; ?>" readonly>
+            <br>    
             <input type="text" name="bookName" id="bookName" value="<?php echo htmlspecialchars($book['bookName']) ?>" placeholder="Book name">
             <br>
             <input type="text" name="author" id="author" value="<?php echo htmlspecialchars($book['author']) ?>" placeholder="Author">
@@ -49,6 +52,7 @@
             <input type="file" name="bookCover" id="bookCover" placeholder="Book cover">
             <br>
             <input type="submit" name="edit">
+            <a href="bookIndex.php">Cancel</a>
         </form>
     </div>
 </body>

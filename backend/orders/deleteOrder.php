@@ -2,7 +2,7 @@
     include(__DIR__ . '/../connect.php');
 
     //Lấy dữ liệu nhập vào từ form
-    $id = $_POST['id'];
+    $id = $_GET['id'];
 
     //Sử dụng prepared statement để chống SQL Injection
     $stmt = $mysqli->prepare("DELETE FROM orders WHERE id = ?");
