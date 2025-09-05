@@ -1,6 +1,8 @@
 <?php 
+    include_once('../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+
     session_start();
-    include('connect.php');
 
     //Lấy thông tin người dùng đã đăng nhập
     $user_id = $_SESSION['id'] ?? 0;

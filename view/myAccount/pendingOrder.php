@@ -1,5 +1,6 @@
 <?php
-    include('C:\xampp\htdocs\bookStore\backend\myOrder\pendingOrder.php');
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/myOrder/pendingOrder.php');
 
     $orders = $data;
 ?>

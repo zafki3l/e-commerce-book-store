@@ -1,8 +1,10 @@
 <?php
+    include_once('../../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/orders/getOrderDetailList.php');
+    include_once(ROOT_PATH . '/backend/orders/getOrderTotalPrice.php');
+
     session_start();
-    include('C:\xampp\htdocs\bookStore\backend\connect.php');
-    include('C:\xampp\htdocs\bookStore\backend\orders\getOrderDetailList.php');
-    include('C:\xampp\htdocs\bookStore\backend\orders\getOrderTotalPrice.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: /bookStore/view/auth/login.php');

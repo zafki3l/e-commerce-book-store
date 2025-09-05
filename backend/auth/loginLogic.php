@@ -1,8 +1,9 @@
 <?php 
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+
     //Bắt đầu SESSION để lưu thông tin đăng nhập của user
     session_start();
-
-    include('../connect.php');
 
     //Lưu thông tin nhập vào của user vào biến 
     $email = $_POST['email'];

@@ -1,7 +1,9 @@
 <?php 
+    include('../../config.php');
+    include(ROOT_PATH . '/connect.php');
+    include(ROOT_PATH . '/backend/admin/findUser.php');
+
     session_start();
-    include('../../backend/connect.php');
-    include('../../backend/admin/findUser.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
@@ -12,8 +14,10 @@
         exit('You do not have permission to access this site!');
     }
 
+    //Lưu tên đăng nhập của users vào $username
     $username = $_SESSION['username'];
 
+    //Lấy ra danh sách users
     $userList = getFindUser($mysqli);
 ?>
 
@@ -32,7 +36,7 @@
     <!--Main content-->
     <div class="main-content">
         <h2>THIS IS ADMIN DASHBOARD</h2>
-        <h3>WELCOME, <?php echo $username; ?></h3>
+        <h3>WELCOME, <?php echo htmlspecialchars($username); ?></h3>
         <form action="dashboard.php" method="post">
             <input type="text" name="user" id="user" placeholder="Find user by name or id">
             <input type="submit">
@@ -65,7 +69,7 @@
                                     case 1: $roleName = 'User'; break;
                                     case 2: $roleName = 'Staff'; break;
                                     case 3: $roleName = 'Admin'; break;
-                                    default: echo htmlspecialchars("Unknown");
+                                    default: $roleName = 'Unknown';
                                 }
                                 echo htmlspecialchars($roleName);
                             ?>

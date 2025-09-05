@@ -1,5 +1,4 @@
 <?php 
-    include('C:\xampp\htdocs\bookStore\backend\bookSection\newbooks.php');
     session_start();
     $username = $_SESSION['username'] ?? ''; 
 ?>

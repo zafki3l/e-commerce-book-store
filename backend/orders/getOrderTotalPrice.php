@@ -1,5 +1,6 @@
 <?php 
-    include_once __DIR__ . '/../connect.php';
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
 
     //Tính tổng của tất cả orderItem trong order
     function getOrderTotalPrice($mysqli, $order_id) 

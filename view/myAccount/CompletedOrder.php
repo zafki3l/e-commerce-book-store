@@ -1,5 +1,6 @@
 <?php
-    include('C:\xampp\htdocs\bookStore\backend\myOrder\completedOrder.php');
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/myOrder/completedOrder.php');
 
     $orders = $data;
 ?>

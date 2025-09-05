@@ -1,5 +1,7 @@
 <?php 
-    include_once __DIR__ . '/../connect.php';
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+
     //Lưu dữ liệu nhập vào của user vào biến
     $username = $_POST['username'];
     $email = $_POST['email'];

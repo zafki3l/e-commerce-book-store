@@ -1,5 +1,7 @@
 <?php 
-    $result = include('C:\xampp\htdocs\bookStore\backend\searchBar\searchLogic.php');
+    include_once('../../config.php');
+
+    $result = include(ROOT_PATH . '/backend/searchBar/searchLogic.php');
     $books = $result['data'];
     $search = $result['search'];
 ?>

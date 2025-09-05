@@ -1,6 +1,7 @@
 <?php 
-    include(__DIR__ . '/../connect.php');
-
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+    
     //Lưu dữ liệu nhập vào từ form vào biến
     $id = $_POST['id'];
     $user_id = $_POST['user_id'];

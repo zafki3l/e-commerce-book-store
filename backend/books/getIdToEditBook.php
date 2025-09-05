@@ -1,5 +1,7 @@
 <?php
-    include('C:\xampp\htdocs\bookStore\backend\connect.php'); 
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');    
+    
     function getIdToEditBook($mysqli)
     {
         $id = $_GET['id'];

@@ -1,8 +1,10 @@
 <?php 
-    session_start();
-    include(__DIR__ . '/../../backend/connect.php');
-    include(__DIR__ . '/../../backend/SalesReport/createSalesReport.php');
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/SalesReport/createSalesReport.php');
 
+    session_start();
+    
     $totalPrice = monthlyReport($mysqli);
     
     //Kiểm tra đăng nhập

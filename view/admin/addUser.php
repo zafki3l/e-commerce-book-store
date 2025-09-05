@@ -10,9 +10,8 @@
         exit('You do not have permission to access this site!');
     }
 
+    //Lưu tên đăng nhập của user vào $username
     $username = $_SESSION['username'];
-
-    $userList = getFindUser($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +37,11 @@
             <br>
             <input type="text" name="password" id="password" placeholder="Password" required>
             <br>
-            <input type="text" name="role" id="role" placeholder="Role" required>
+            <select name="role" id="role" required>
+                <option value="1">User</option>
+                <option value="2">Staff</option>
+                <option value="3">Admin</option>
+            </select>
             <br>
             <input type="submit">
             <a href="dashboard.php">Cancel</a>

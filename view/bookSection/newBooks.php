@@ -1,5 +1,6 @@
 <?php 
-    include('C:\xampp\htdocs\bookStore\backend\bookSection\newbooks.php');
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/bookSection/newBooks.php');
 
     $books = $result;
 ?>

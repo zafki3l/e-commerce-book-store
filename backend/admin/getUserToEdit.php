@@ -1,5 +1,6 @@
 <?php
-    include_once __DIR__ . '/../connect.php';
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
 
     //Lấy ra user từ để edit
     function getUserToEdit($mysqli)

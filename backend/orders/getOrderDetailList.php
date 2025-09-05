@@ -1,5 +1,6 @@
 <?php 
-    include_once __DIR__ . '/../connect.php';
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
 
     //Xử lý logic truy vấn orderDetails
     function getOrderDetailList($mysqli, $order_id) 

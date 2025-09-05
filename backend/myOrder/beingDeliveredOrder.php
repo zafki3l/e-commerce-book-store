@@ -1,6 +1,8 @@
 <?php
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+
     session_start();
-    include_once __DIR__ . '/../connect.php';
     
     //Lấy id người dùng bằng SESSION
     $user_id = $_SESSION['id'];

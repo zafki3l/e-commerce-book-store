@@ -1,7 +1,9 @@
 <?php 
+    include('../../config.php');
+    include(ROOT_PATH . '/backend/admin/getUserToEdit.php');
+    include(ROOT_PATH . '/connect.php');
+
     session_start();
-    include('C:\xampp\htdocs\bookStore\backend\admin\getUserToEdit.php');
-    include('C:\xampp\htdocs\bookStore\backend\connect.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
@@ -12,6 +14,7 @@
         exit('You do not have permission to access this site!');
     }
 
+    //Lấy ra user cần edit
     $user = getUserToEdit($mysqli);
 ?>
 
@@ -38,7 +41,11 @@
             <br>
             <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($user['email']) ?>" placeholder="Email" required>
             <br>
-            <input type="text" name="role" id="role" value="<?php echo htmlspecialchars($user['role']) ?>" placeholder="Role" required>
+            <select name="role" id="role">
+                <option value="1" <?php echo ($user['role'] == 1) ? 'selected': '' ?>>User</option>
+                <option value="2" <?php echo ($user['role'] == 2) ? 'selected': '' ?>>Staff</option>
+                <option value="3" <?php echo ($user['role'] == 3) ? 'selected': '' ?>>Admin</option>
+            </select>
             <br>
             <input type="submit">
             <a href="dashboard.php">Cancel</a>

@@ -1,4 +1,7 @@
-<?php include('C:\xampp\htdocs\bookStore\backend\viewDetail.php'); ?>
+<?php 
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/viewDetail.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">

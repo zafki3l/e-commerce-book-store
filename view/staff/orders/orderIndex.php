@@ -1,8 +1,10 @@
 <?php
+    include_once('../../../config.php');
+    include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/orders/findOrder.php');
+    include_once(ROOT_PATH . '/backend/orders/getOrderTotalPriceById.php');
+
     session_start();
-    include('C:\xampp\htdocs\bookStore\backend\connect.php');
-    include('C:\xampp\htdocs\bookStore\backend\orders\findOrder.php');
-    include('C:\xampp\htdocs\bookStore\backend\orders\getOrderTotalPriceById.php');
 
     //Kiểm tra người dùng đã đăng nhập chưa
     if (!isset($_SESSION['id'])) {

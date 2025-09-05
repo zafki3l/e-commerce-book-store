@@ -1,7 +1,8 @@
 <?php 
+    include_once('../../../config.php');
+    include_once(ROOT_PATH . '/backend/books/getIdToEditBook.php');
+
     session_start();
-    include('C:\xampp\htdocs\bookStore\backend\connect.php');
-    include('C:\xampp\htdocs\bookStore\backend\books\getIdToEditBook.php');
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
