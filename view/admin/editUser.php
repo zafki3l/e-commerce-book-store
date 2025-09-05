@@ -1,7 +1,7 @@
 <?php 
     include('../../config.php');
-    include(ROOT_PATH . '/backend/admin/getUserToEdit.php');
-    include(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/admin/getUserToEdit.php');
+    include_once(ROOT_PATH . '/connect.php');
 
     session_start();
 

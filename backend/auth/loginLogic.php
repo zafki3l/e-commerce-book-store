@@ -1,5 +1,5 @@
 <?php 
-    include_once('../../config.php');
+    include_once(__DIR__ . '/../../config.php');
     include_once(ROOT_PATH . '/connect.php');
 
     //Bắt đầu SESSION để lưu thông tin đăng nhập của user

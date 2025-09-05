@@ -1,7 +1,7 @@
 <?php 
     include('../../config.php');
-    include(ROOT_PATH . '/connect.php');
-    include(ROOT_PATH . '/backend/admin/findUser.php');
+    include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/admin/findUser.php');
 
     session_start();
 

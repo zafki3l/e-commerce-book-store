@@ -1,9 +1,9 @@
 <?php 
-    include_once('../../config.php');
+    include_once(__DIR__ . '/../../config.php');
     include_once(ROOT_PATH . '/connect.php');    
     
     function getFindOrder($mysqli)
-    {
+    {   
         $data = [];
 
         //Nếu như nút tìm có người bấm nút tìm kiếm

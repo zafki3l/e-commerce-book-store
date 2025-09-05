@@ -44,8 +44,6 @@
         </form>
         <br>
         <a href="addOrder.php">Create Order</a>
-        <a href="editOrder.php">Edit Order</a>
-        <a href="deleteOrder.php">Delete Order</a>
         
         <table border="1">
             <thead>
