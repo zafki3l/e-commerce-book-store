@@ -1,0 +1,3 @@
+# Ignore sensitive files
+connect.php
+config.php
