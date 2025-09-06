@@ -3,19 +3,10 @@
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/orders/findOrder.php');
     include_once(ROOT_PATH . '/backend/orders/getOrderTotalPriceById.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    session_start();
-
-    //Kiểm tra người dùng đã đăng nhập chưa
-    if (!isset($_SESSION['id'])) {
-        header('Location: /bookStore/view/auth/login.php');
-        exit();
-    }
-
-    //Nếu như role = 1 thì chặn quyền truy cập
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 
     $username = $_SESSION['username'];
 
@@ -82,7 +73,11 @@
                             <td>
                                 <a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>">View</a>
                                 <a href="editOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>">Edit</a>
-                                <a href="\bookStore\backend\orders\deleteOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>">Delete</a>
+                                <form action="../../../backend/orders/deleteOrder.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($order['id']); ?>">
+                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+                                    <button type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>

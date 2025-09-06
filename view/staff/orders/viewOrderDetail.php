@@ -3,17 +3,10 @@
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/orders/getOrderDetailList.php');
     include_once(ROOT_PATH . '/backend/orders/getOrderTotalPrice.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    session_start();
-
-    if (!isset($_SESSION['id'])) {
-        header('Location: /bookStore/view/auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 
     $username = $_SESSION['username'];
     $order_id = $_GET['id'];

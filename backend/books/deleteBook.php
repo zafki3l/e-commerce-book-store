@@ -1,9 +1,18 @@
 <?php
     include_once(__DIR__ . '/../../config.php');
     include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/csrf.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
+
+    // VALIDATE TOKEN
+    validateToken($_POST['token']);
+
+    // KIỂM TRA ĐĂNG NHẬP VÀ QUYỀN TRUY CẬP
+    isLogin();
+    ensureStaffOrAdmin();
 
     //Lưu id nhập vào từ form vào biến $id
-    $id = $_GET['id'];
+    $id = $_POST['id'];
 
     //Sử dụng prepared statement để chống SQL Injection
     $stmt = $mysqli->prepare(

@@ -1,6 +1,11 @@
 <?php
     include_once(__DIR__ . '/../../config.php');
     include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
+    
+    // KIỂM TRA ĐĂNG NHẬP VÀ QUYỀN TRUY CẬP
+    isLogin();
+    ensureStaffOrAdmin();
 
     function getIdToEditOrder($mysqli)
     {

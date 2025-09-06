@@ -3,8 +3,6 @@
     include_once(ROOT_PATH . '/backend/admin/getUserToEdit.php');
     include_once(ROOT_PATH . '/connect.php');
 
-    session_start();
-
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
         exit();
@@ -35,6 +33,7 @@
         <h2>Edit user</h2>
 
         <form action="../../backend/admin/editUser.php" method="post">
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
             <input type="text" name="id" id="id" placeholder="id_user" value="<?php echo $user['id'] ?>" readonly>
             <br>
             <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user['username']) ?>" placeholder="Username" required>

@@ -2,22 +2,12 @@
     include_once('../../config.php');
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/SalesReport/createSalesReport.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    session_start();
+    isLogin();
+    ensureStaffOrAdmin();
     
     $totalPrice = monthlyReport($mysqli);
-    
-    //Kiểm tra đăng nhập
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    //Chặn người dùng ko có quyền truy cập
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
-
     $month = (!empty($_POST['month'])) ? $_POST['month'] : date('m');
 ?>
 

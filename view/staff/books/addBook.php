@@ -1,14 +1,9 @@
 <?php 
-    session_start();
+    include_once('../../../config.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +23,7 @@
         <h2>Add Book</h2>
 
         <form action="../../../backend/books/addBook.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
             <input type="text" name="bookName" id="bookName" placeholder="Book name" required>
             <br>
             <input type="text" name="author" id="author" placeholder="Author" required>

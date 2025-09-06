@@ -1,14 +1,9 @@
 <?php 
-    session_start();
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] != 3) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureAdmin();  
 
     //Lưu tên đăng nhập của user vào $username
     $username = $_SESSION['username'];
@@ -31,6 +26,7 @@
         <h2>Add user</h2>
 
         <form action="../../backend/admin/addUser.php" method="post">
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
             <input type="text" name="username" id="username" placeholder="Username" required>
             <br>
             <input type="text" name="email" id="email" placeholder="Email" required>

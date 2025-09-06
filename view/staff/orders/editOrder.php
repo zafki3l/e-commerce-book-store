@@ -2,17 +2,10 @@
     include_once('../../../config.php');
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/orders/getIdToEditOrder.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    session_start();
-    
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 
     $order = getIdToEditOrder($mysqli);
 ?>
@@ -34,6 +27,7 @@
         <h2>Edit Order</h2>
 
         <form action="/bookStore/backend/orders/editOrder.php" method="post">
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
             <label for="">Order id</label>
             <input type="text" name="id" id="id" value="<?php echo htmlspecialchars($order['id']) ?>" placeholder="Order id" readonly>
             <br>

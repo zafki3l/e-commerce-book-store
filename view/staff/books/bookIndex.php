@@ -2,17 +2,10 @@
     include_once('../../../config.php');
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/books/findBook.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    session_start();
-
-    if (!isset($_SESSION['id'])) {
-        header('Location: /bookStore/view/auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 
     $username = $_SESSION['username'];
     $bookList = getFindBook($mysqli);
@@ -40,9 +33,6 @@
         </form>
         <br>
         <a href="addBook.php">Add book</a>
-        <a href="editBook.php">Edit Book</a>
-        <a href="deleteBook.php">Delete Book</a>
-
         
         <table border="1">
             <thead>
@@ -63,28 +53,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <?php foreach($bookList as $book): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($book['id']) ?></td>
-                            <td><?php echo htmlspecialchars($book['bookName']) ?></td>
-                            <td><?php echo htmlspecialchars($book['author']) ?></td>
-                            <td><?php echo htmlspecialchars($book['publisher']) ?></td>
-                            <td><?php echo htmlspecialchars($book['category']) ?></td>
-                            <td><?php echo htmlspecialchars($book['description']) ?></td>
-                            <td><?php echo htmlspecialchars($book['price']) ?></td>
-                            <td><?php echo htmlspecialchars($book['quantity']) ?></td>
-                            <td><?php echo htmlspecialchars((($book['status'] > 0) ? "In stock" : "Out stock")) ?></td>
-                            <td><?php echo htmlspecialchars($book['bookCover']) ?></td>
-                            <td><?php echo htmlspecialchars($book['created_at']) ?></td>
-                            <td><?php echo htmlspecialchars($book['update_at']) ?></td>
-                            <td>
-                                <a href="editBook.php?id=<?php echo htmlspecialchars($book['id']) ?>">Edit</a>
-                                <a href="\bookStore\backend\books\deleteBook.php?id=<?php echo htmlspecialchars($book['id']) ?>">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tr>
+                <?php foreach($bookList as $book): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($book['id']) ?></td>
+                        <td><?php echo htmlspecialchars($book['bookName']) ?></td>
+                        <td><?php echo htmlspecialchars($book['author']) ?></td>
+                        <td><?php echo htmlspecialchars($book['publisher']) ?></td>
+                        <td><?php echo htmlspecialchars($book['category']) ?></td>
+                        <td><?php echo htmlspecialchars($book['description']) ?></td>
+                        <td><?php echo htmlspecialchars($book['price']) ?></td>
+                        <td><?php echo htmlspecialchars($book['quantity']) ?></td>
+                        <td><?php echo htmlspecialchars((($book['status'] > 0) ? "In stock" : "Out stock")) ?></td>
+                        <td><?php echo htmlspecialchars($book['bookCover']) ?></td>
+                        <td><?php echo htmlspecialchars($book['created_at']) ?></td>
+                        <td><?php echo htmlspecialchars($book['update_at']) ?></td>
+                        <td>
+                            <a href="editBook.php?id=<?php echo htmlspecialchars($book['id']) ?>">Edit</a>
+                            <form action="../../../backend/books/deleteBook.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($book['id']); ?>">
+                                <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

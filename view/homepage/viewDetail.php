@@ -21,6 +21,7 @@
             <p><strong>Description:</strong> <?php echo htmlspecialchars($book['description']); ?></p>
 
             <form action="\bookStore\backend\buyNow.php" method="post">
+                <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
                 <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
                 <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
                 <input type="hidden" name="quantity" value="1">

@@ -1,17 +1,10 @@
 <?php 
     include_once('../../../config.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php'); 
     include_once(ROOT_PATH . '/backend/books/getIdToEditBook.php');
 
-    session_start();
-
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 
     $book = getIdToEditBook($mysqli);
 ?>
@@ -33,6 +26,7 @@
         <h2>Edit Book</h2>
 
         <form action="../../../backend/books/editBook.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
             <input type="text" name="id" value="<?php echo $book['id']; ?>" readonly>
             <br>    
             <input type="text" name="bookName" id="bookName" value="<?php echo htmlspecialchars($book['bookName']) ?>" placeholder="Book name">

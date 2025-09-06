@@ -1,9 +1,14 @@
 <?php 
     include_once(__DIR__ . '/../../config.php');
     include_once(ROOT_PATH . '/connect.php');
+    include_once(ROOT_PATH . '/backend/csrf.php');
 
     //Bắt đầu SESSION để lưu thông tin đăng nhập của user
     session_start();
+
+    //Tạo token để chống csrf
+    $token = generateToken();
+    $token_expire = generateTokenExpire();
 
     //Lưu thông tin nhập vào của user vào biến 
     $email = $_POST['email'];

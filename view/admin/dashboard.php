@@ -3,17 +3,6 @@
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/admin/findUser.php');
 
-    session_start();
-
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] != 3) {
-        exit('You do not have permission to access this site!');
-    }
-
     //Lưu tên đăng nhập của users vào $username
     $username = $_SESSION['username'];
 
@@ -78,7 +67,11 @@
                         <td><?php echo htmlspecialchars($user['update_at']) ?></td>
                         <td>
                             <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
-                            <a href="\bookStore\backend\admin\deleteUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Delete</a>
+                            <form action="../../backend/admin/deleteUser.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
+                                <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+                                <button type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

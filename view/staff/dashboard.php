@@ -1,14 +1,9 @@
 <?php 
-    session_start();
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
-    if (!isset($_SESSION['id'])) {
-        header('Location: ../auth/login.php');
-        exit();
-    }
-
-    if ($_SESSION['role'] == 1) {
-        exit('You do not have permission to access this site!');
-    }
+    isLogin();
+    ensureStaffOrAdmin();
 
     $username = $_SESSION['username'];
 ?>

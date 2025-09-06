@@ -1,5 +1,8 @@
 <?php 
-    session_start();
+    include_once('../../config.php');
+    include_once(ROOT_PATH . '/backend/auth/authUser.php');
+
+    isLogin();
 
     $username = $_SESSION['username'] ?? ''; 
 ?>
