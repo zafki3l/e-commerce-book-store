@@ -15,7 +15,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/admin/dashboard.css">
+    <!-- <link rel="stylesheet" href="../../public/css/admin/dashboard.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
      <style>
         .main-content {
             background-color: #ca122f;
@@ -46,10 +48,11 @@
 
         .table-ad{
             width: 90%;
-            height: 500px;
+            height: auto;
             background-color: #faf9ea;
             border-radius: 10px;
             margin-left: 70px ;
+            padding-bottom: 20px;
         }
 
         .content1{
@@ -93,20 +96,43 @@
 
         }
 
+        table{
+            margin: 40px;
+        }
+
+        tr{
+            height: 60px;
+        }
+
         table, th, td {
                 border: 1px solid black;
                 border-collapse: collapse;
                 text-align: center;
+                
             }
 
-        table{
-            margin: 40px;
-            
-        }
 
         .action{
             display: inline;
             margin: 20px;
+            input{
+                border: none;
+            }
+        }
+
+        .btn{
+            text-decoration: none;
+            padding: 10px 10px;
+            border-radius: 10px;
+            border: none;
+            background-color: #dbd4d4;
+            .fa-pen{
+                color: rgb(75, 75, 239);
+            }
+
+            .fa-trash{
+                color: red;
+            }
         }
         
     </style>
@@ -144,9 +170,9 @@
                             <th style="width: 20%;">Username</th>
                             <th style="width: 20%">Email</th>
                             <th style="width: 10%">Role</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
-                            <th style="width: 20%">Action</th>
+                            <th style="width: 15%">Created at</th>
+                            <th style="width: 15%">Updated at</th>
+                            <th style="width: 15%">Action</th>
                     </tr>
             </thead>
             <tbody>
@@ -170,11 +196,15 @@
                         <td><?php echo htmlspecialchars($user['created_at']) ?></td>
                         <td><?php echo htmlspecialchars($user['update_at']) ?></td>
                         <td>
-                            <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
+                            <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>" class="btn">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
                             <form class="action" action="../../backend/admin/deleteUser.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
                                 <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                <button type="submit">Delete</button>
+                                <button type="submit" class="btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
