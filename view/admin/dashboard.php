@@ -22,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/admin/dashboard.css">
+    <!-- <link rel="stylesheet" href="../../public/css/admin/dashboard.css"> -->
     <title>Document</title>
 </head>
 <body>
@@ -31,55 +31,65 @@
 
     <!--Main content-->
     <div class="main-content">
-        <h2>THIS IS ADMIN DASHBOARD</h2>
-        <h3>WELCOME, <?php echo $username; ?></h3>
-        <form action="dashboard.php" method="post">
-            <input type="text" name="user" id="user" placeholder="Find user by name or id">
-            <input type="submit">
-        </form>
-        <br>
-        <a href="addUser.php">Create user</a>
-        
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($userList as $user): ?>
+        <div class="table-ad">
+            <div class="content1">
+                <h2>THIS IS ADMIN DASHBOARD</h2>
+                <h3>WELCOME, <?php echo $username; ?></h3>
+            </div>
+           
+            <div class="content2">
+                <form action="dashboard.php" method="post">
+                    <input type="text" name="user" id="user" placeholder="Find user by name or id">
+                    <input type="submit" id="submit">
+                </form>
+                <br>
+                <!-- <a href="addUser.php">
+                    <button>Create user</button>
+                </a> -->
+                <a href="addUser.php" class="btn">Create User</a>
+            </div>
+
+            <table border="1">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($user['id']) ?></td>
-                        <td><?php echo htmlspecialchars($user['username']) ?></td>
-                        <td><?php echo htmlspecialchars($user['email']) ?></td>
-                        <td>
-                            <?php 
-                                switch ($user['role']) {
-                                    case 0: $roleName = 'Guest'; break;
-                                    case 1: $roleName = 'User'; break;
-                                    case 2: $roleName = 'Staff'; break;
-                                    case 3: $roleName = 'Admin'; break;
-                                    default: echo htmlspecialchars("Unknown");
-                                }
-                                echo htmlspecialchars($roleName);
-                            ?>
-                        </td>
-                        <td><?php echo htmlspecialchars($user['created_at']) ?></td>
-                        <td><?php echo htmlspecialchars($user['update_at']) ?></td>
-                        <td>
-                            <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
-                            <a href="\bookStore\backend\admin\deleteUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Delete</a>
-                        </td>
+                        <th>User ID</th>
+                        <th style="width: 20%;">Username</th>
+                        <th style="width: 20%">Email</th>
+                        <th style="width: 10%">Role</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
+                        <th style="width: 20%">Action</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach($userList as $user): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($user['id']) ?></td>
+                            <td><?php echo htmlspecialchars($user['username']) ?></td>
+                            <td><?php echo htmlspecialchars($user['email']) ?></td>
+                            <td>
+                                <?php 
+                                    switch ($user['role']) {
+                                        case 0: $roleName = 'Guest'; break;
+                                        case 1: $roleName = 'User'; break;
+                                        case 2: $roleName = 'Staff'; break;
+                                        case 3: $roleName = 'Admin'; break;
+                                        default: echo htmlspecialchars("Unknown");
+                                    }
+                                    echo htmlspecialchars($roleName);
+                                ?>
+                            </td>
+                            <td><?php echo htmlspecialchars($user['created_at']) ?></td>
+                            <td><?php echo htmlspecialchars($user['update_at']) ?></td>
+                            <td>
+                                <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
+                                <a href="\bookStore\backend\admin\deleteUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

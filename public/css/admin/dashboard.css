@@ -14,7 +14,6 @@ html, body {
 }
 
 body {
-  display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
@@ -25,3 +24,11 @@ body {
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+.table-ad{
+  width: 90%;
+  height: 500px;
+  background-color: #faf9ea;
+
+}
+

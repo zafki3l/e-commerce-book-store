@@ -1,7 +1,8 @@
 <?php 
     session_start();
-    include('C:\xampp\htdocs\bookStore\backend\admin\getUserToEdit.php');
-    include('C:\xampp\htdocs\bookStore\backend\connect.php');
+    include(__DIR__ . '/../../backend/connect.php');
+    include(__DIR__ . '/../../backend/admin/getUserToEdit.php');
+
 
     if (!isset($_SESSION['id'])) {
         header('Location: ../auth/login.php');
@@ -45,4 +46,4 @@
         </form>
     </div>
 </body>
-</html>
+</html> 
