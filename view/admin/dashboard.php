@@ -16,6 +16,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/admin/dashboard.css">
+     <style>
+        .main-content {
+            background-color: #ca122f;
+            flex: 1;
+            padding: 100px 0; 
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .table-ad{
+            width: 90%;
+            height: 500px;
+            background-color: #faf9ea;
+            border-radius: 10px;
+            margin-left: 70px ;
+        }
+
+        .content1{
+            background-color: #FFDE5C;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+            color: black;
+            margin-bottom: 20px;
+            h2{
+                margin-bottom: 10px;
+            }
+        }
+
+        .content2{
+            padding-left: 40px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            #user{
+                border-radius: 10px;
+                border: 2px solid black;
+                padding: 16px 100px 16px 10px;
+            }
+
+            #submit{
+                padding: 16px 15px;
+                border-radius: 10px;
+                border: 2px solid black;
+                background-color: #e2e0c5;
+            }
+
+            a.btn {
+                padding: 10px 20px;
+                background-color: #e2e0c5;
+                color: black;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                border: 2px solid black;
+            }
+
+        }
+
+        table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                text-align: center;
+            }
+
+        table{
+            margin: 40px;
+            
+        }
+
+        .action{
+            display: inline;
+            margin: 20px;
+        }
+        
+    </style>
     <title>Document</title>
 </head>
 <body>
@@ -24,26 +118,36 @@
 
     <!--Main content-->
     <div class="main-content">
-        <h2>THIS IS ADMIN DASHBOARD</h2>
-        <h3>WELCOME, <?php echo htmlspecialchars($username); ?></h3>
-        <form action="dashboard.php" method="post">
-            <input type="text" name="user" id="user" placeholder="Find user by name or id">
-            <input type="submit">
-        </form>
-        <br>
-        <a href="addUser.php">Create user</a>
-        
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
-                    <th>Action</th>
-                </tr>
+            <div class="table-ad">
+                <div class="content1">
+
+                    <h2>THIS IS ADMIN DASHBOARD</h2>
+                    <h3>WELCOME, <?php echo $username; ?></h3>
+                </div>
+            
+                <div class="content2">
+                    <form action="dashboard.php" method="post">
+                        <input type="text" name="user" id="user" placeholder="Find user by name or id">
+                        <input type="submit" id="submit">
+                    </form>
+                    <br>
+                    <!-- <a href="addUser.php">
+                        <button>Create user</button>
+                    </a> -->
+                    <a href="addUser.php" class="btn">Create User</a>
+                </div>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th style="width: 20%;">Username</th>
+                            <th style="width: 20%">Email</th>
+                            <th style="width: 10%">Role</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th style="width: 20%">Action</th>
+                    </tr>
             </thead>
             <tbody>
                 <?php foreach($userList as $user): ?>
@@ -67,7 +171,7 @@
                         <td><?php echo htmlspecialchars($user['update_at']) ?></td>
                         <td>
                             <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
-                            <form action="../../backend/admin/deleteUser.php" method="post">
+                            <form class="action" action="../../backend/admin/deleteUser.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
                                 <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
                                 <button type="submit">Delete</button>

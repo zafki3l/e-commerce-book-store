@@ -1,27 +1,86 @@
 .main-content {
-    background-color: #ca122f;
-    flex: 1;
-    padding: 100px 0; 
-}
+            background-color: #ca122f;
+            flex: 1;
+            padding: 100px 0; 
+        }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+        body {
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .table-ad{
+            width: 90%;
+            height: 500px;
+            background-color: #faf9ea;
+            border-radius: 10px;
+            margin-left: 70px ;
+        }
+
+        .content1{
+            background-color: #FFDE5C;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+            color: black;
+            margin-bottom: 20px;
+            h2{
+                margin-bottom: 10px;
+            }
+        }
+
+        .content2{
+            padding-left: 40px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            #user{
+                border-radius: 10px;
+                border: 2px solid black;
+                padding: 16px 100px 16px 10px;
+            }
+
+            #submit{
+                padding: 16px 15px;
+                border-radius: 10px;
+                border: 2px solid black;
+                background-color: #e2e0c5;
+            }
+
+            a.btn {
+                padding: 10px 20px;
+                background-color: #e2e0c5;
+                color: black;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                border: 2px solid black;
+            }
+
+        }
+
+        table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                text-align: center;
+            }
+
+        table{
+            margin: 40px;
+        }
+        
