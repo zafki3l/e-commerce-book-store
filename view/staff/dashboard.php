@@ -75,6 +75,14 @@
             margin: 0px 20px;
             margin-bottom: 40px;
         }
+
+        a:visited{
+            color: black;
+        }
+
+        a:active {
+            color: #ca122f;
+        }
     </style>
     <title>Document</title>
 </head>
