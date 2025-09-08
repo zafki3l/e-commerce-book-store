@@ -144,6 +144,7 @@
 
     <!--Main content-->
     <div class="main-content">
+
             <div class="table-ad">
                 <div class="content1">
 
@@ -212,5 +213,7 @@
             </tbody>
         </table>
     </div>
+</div>
+
 </body>
 </html>

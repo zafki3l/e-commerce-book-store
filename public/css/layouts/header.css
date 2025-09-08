@@ -1,5 +1,3 @@
-
-
 /*Phần header */
 .nav-menu a {
     color: #faf9ea;
@@ -20,55 +18,4 @@
 .nav-left, .nav-right {
     display: flex;
     gap: 20px;
-}
-
-
-.header .user-menu {
-    background-color: #faf9ea;
-    color: #111014;
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.user-menu .search-bar {
-    min-height: 35px;
-    font-size: 20px;
-    border-radius: 6px;
-    border: 1 solid #111014;
-    outline: none;
-    width: 600px;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    border: 2px solid #ccc;
-    border-radius: 30px;
-    padding: 5px 15px;
-    background-color: #fff;
-    width: 300px;
-    transition: box-shadow 0.3s ease;
-}
-
-.search-bar:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.search-bar input {
-    border: none;
-    outline: none;
-    flex: 1;
-    font-size: 16px;
-}
-
-.search-bar button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    margin-top: 5px;
 }

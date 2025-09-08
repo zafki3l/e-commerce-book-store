@@ -41,13 +41,6 @@
                 <?php endif; ?>
             </div>
         </ul>
-        <ul type="none" class="user-menu">
-            <div class="search-bar">
-                <form action="\bookStore\view\homepage\searchResult.php" method="get">
-                    <input type="text" name="search" placeholder="Search books..."/>
-                </form>
-            </div>
-        </ul>
     </div>
 </body>
 </html>
