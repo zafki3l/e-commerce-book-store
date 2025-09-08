@@ -14,11 +14,18 @@
 <body>
     <!--Header-->
     <?php include('../layouts/header.php') ?>
+    <div class="header">
+        <ul type="none" class="user-menu">
+            <div class="search-bar">
+                <form action="\bookStore\view\homepage\searchResult.php" method="get">
+                    <input type="text" name="search" placeholder="Search books..."/>
+                </form> 
+            </div>
+        </ul>
+    </div>
 
     <!--Main content-->
     <div class="main-content">
-        <h2>WELCOME</h2>
-
         <!--NEW BOOKS-->
         <?php include('../bookSection/newBooks.php') ?>
 

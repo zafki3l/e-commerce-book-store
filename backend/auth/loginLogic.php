@@ -6,10 +6,6 @@
     //Bắt đầu SESSION để lưu thông tin đăng nhập của user
     session_start();
 
-    //Tạo token để chống csrf
-    $token = generateToken();
-    $token_expire = generateTokenExpire();
-
     //Lưu thông tin nhập vào của user vào biến 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -43,6 +39,10 @@
         header('Location: ../../view/auth/login.php?error=1');
         exit();
     } else {
+        //Tạo token để chống csrf
+        $token = generateToken();
+        $token_expire = generateTokenExpire();
+
         // Lưu thông tin của users vào trong Session
         $_SESSION['id'] = $data['id'];
         $_SESSION['username'] = $data['username'];
