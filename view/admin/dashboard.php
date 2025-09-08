@@ -24,16 +24,21 @@
 
     <!--Main content-->
     <div class="main-content">
-        <h2>THIS IS ADMIN DASHBOARD</h2>
-        <h3>WELCOME, <?php echo htmlspecialchars($username); ?></h3>
-        <form action="dashboard.php" method="post">
+    <div class="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <h3>Welcome, <?php echo htmlspecialchars($username); ?></h3>
+    </div>
+
+    <div class="dashboard-actions">
+        <form action="dashboard.php" method="post" class="search-form">
             <input type="text" name="user" id="user" placeholder="Find user by name or id">
-            <input type="submit">
+            <input type="submit" value="Search" id="submit">
         </form>
-        <br>
-        <a href="addUser.php">Create user</a>
-        
-        <table border="1">
+        <a href="addUser.php" class="btn">+ Create user</a>
+    </div>
+
+    <div class="dashboard-table">
+        <table>
             <thead>
                 <tr>
                     <th>User ID</th>
@@ -66,11 +71,11 @@
                         <td><?php echo htmlspecialchars($user['created_at']) ?></td>
                         <td><?php echo htmlspecialchars($user['update_at']) ?></td>
                         <td>
-                            <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>">Edit</a>
-                            <form action="../../backend/admin/deleteUser.php" method="post">
+                            <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>" class="btn btn-edit">Edit</a>
+                            <form action="../../backend/admin/deleteUser.php" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
                                 <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                <button type="submit">Delete</button>
+                                <button type="submit" class="btn btn-delete">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -78,5 +83,7 @@
             </tbody>
         </table>
     </div>
+</div>
+
 </body>
 </html>

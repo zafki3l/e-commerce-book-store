@@ -25,3 +25,97 @@ body {
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+.dashboard-header {
+    background: #FFDE5C;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dashboard-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 10px;
+    width: 250px;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: #e2e0c5;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #e2e0c5;
+    color: black;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 16px;
+}
+
+.dashboard-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.dashboard-table th {
+    background-color: #FFDE5C;
+}
+
+.btn {
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 2px solid black;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Nút Edit */
+.btn-edit {
+    background-color: #4CAF50; /* xanh lá */
+    color: white;
+    border-color: #3e8e41;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+}
+
+/* Nút Delete */
+.btn-delete {
+    background-color: #f44336; /* đỏ */
+    color: white;
+    border-color: #da190b;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
+}

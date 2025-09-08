@@ -71,12 +71,11 @@
                             <td><?php echo htmlspecialchars($order['created_at']) ?></td>
                             <td><?php echo htmlspecialchars($order['update_at']) ?></td>
                             <td>
-                                <a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>">View</a>
-                                <a href="editOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>">Edit</a>
-                                <form action="../../../backend/orders/deleteOrder.php" method="post">
-                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($order['id']); ?>">
+                                <a href="editUser.php?id=<?php echo htmlspecialchars($user['id']) ?>" class="btn btn-edit">Edit</a>
+                                <form action="../../backend/admin/deleteUser.php" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']); ?>">
                                     <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                    <button type="submit">Delete</button>
+                                    <button type="submit" class="btn btn-delete">Delete</button>
                                 </form>
                             </td>
                         </tr>
