@@ -89,6 +89,105 @@
             margin: 0px 20px;
             margin-bottom: 40px;
         }
+
+        .content-right{
+            width: 90%;
+            height: auto;
+            background-color: #faf9ea;
+            border-radius: 10px;
+            margin-left: 70px ;
+            padding-bottom: 20px;
+        }
+
+        .content1{
+            background-color: #FFDE5C;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .content2{
+            padding-left: 40px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            #book{
+                border-radius: 10px;
+                border: 2px solid black;
+                padding: 16px 100px 16px 10px;
+            }
+
+            #submit{
+                padding: 16px 15px;
+                border-radius: 10px;
+                border: 2px solid black;
+                background-color: #e2e0c5;
+            }
+
+            a.btn {
+                padding: 10px 20px;
+                background-color: #e2e0c5;
+                color: black;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                border: 2px solid black;
+            }
+        }
+
+        table{
+            width: 100%;
+            text-align: center;
+        }
+
+        tr{
+            height: 60px;
+        }
+
+        table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                text-align: center;
+                
+            }
+
+
+        .action{
+            display: inline;
+            margin-left: 10px;
+            input{
+                border: none;
+            }
+        }
+
+        .btn2{
+            text-decoration: none;
+            padding: 10px 10px;
+            border-radius: 10px;
+            border: none;
+            background-color: #dbd4d4;
+            .fa-pen{
+                color: rgb(75, 75, 239);
+            }
+
+            .fa-trash{
+                color: red;
+            }
+        }
+
+        .table{
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        a:visited{
+            color: black;
+        }
+
+        a:active {
+            color: #ca122f;
+        }
     </style>
 </head>
 <body>
@@ -132,63 +231,70 @@
 
     <div class="main-content">
         <div class="content-right">
-        <div class="content1">
+            <div class="content1">
+                <h2>BOOK MANAGEMENT</h2>
+            </div>
 
-        </div>
-        
-        <h2>BOOK MANAGEMENT</h2>
-        <form action="bookIndex.php" method="post">
-            <input type="text" name="book" id="book" placeholder="Find book by name, author, or id">
-            <input type="submit">
-        </form>
-        <br>
-        <a href="addBook.php">Add book</a>
-        
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Book ID</th>
-                    <th>Book Name</th>
-                    <th>Author</th>
-                    <th>Publisher</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Status</th>
-                    <th>Book Cover</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($bookList as $book): ?>
+            <div class="content2">
+                <form action="bookIndex.php" method="post">
+                    <input type="text" name="book" id="book" placeholder="Find book by name, author, or id">
+                    <input type="submit" id="submit">
+                </form>
+
+                <br>
+                <a href="addBook.php" class="btn">Add book</a>
+            </div>
+            <div class="table">
+            <table border="1">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($book['id']) ?></td>
-                        <td><?php echo htmlspecialchars($book['bookName']) ?></td>
-                        <td><?php echo htmlspecialchars($book['author']) ?></td>
-                        <td><?php echo htmlspecialchars($book['publisher']) ?></td>
-                        <td><?php echo htmlspecialchars($book['category']) ?></td>
-                        <td><?php echo htmlspecialchars($book['description']) ?></td>
-                        <td><?php echo htmlspecialchars($book['price']) ?></td>
-                        <td><?php echo htmlspecialchars($book['quantity']) ?></td>
-                        <td><?php echo htmlspecialchars((($book['status'] > 0) ? "In stock" : "Out stock")) ?></td>
-                        <td><?php echo htmlspecialchars($book['bookCover']) ?></td>
-                        <td><?php echo htmlspecialchars($book['created_at']) ?></td>
-                        <td><?php echo htmlspecialchars($book['update_at']) ?></td>
-                        <td>
-                            <a href="editBook.php?id=<?php echo htmlspecialchars($book['id']) ?>">Edit</a>
-                            <form action="../../../backend/books/deleteBook.php" method="post">
-                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($book['id']); ?>">
-                                <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td>
+                        <th style="width:5%">Book ID</th>
+                        <th>Book Name</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Category</th>
+                        <th style="width: 15%;">Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <!-- <th>Book Cover</th>
+                        <th>Created at</th>
+                        <th>Updated at</th> -->
+                        <th style="width:10%">Action</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach($bookList as $book): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($book['id']) ?></td>
+                            <td><?php echo htmlspecialchars($book['bookName']) ?></td>
+                            <td><?php echo htmlspecialchars($book['author']) ?></td>
+                            <td><?php echo htmlspecialchars($book['publisher']) ?></td>
+                            <td><?php echo htmlspecialchars($book['category']) ?></td>
+                            <td><?php echo htmlspecialchars($book['description']) ?></td>
+                            <td><?php echo htmlspecialchars($book['price']) ?></td>
+                            <td><?php echo htmlspecialchars($book['quantity']) ?></td>
+                            <td><?php echo htmlspecialchars((($book['status'] > 0) ? "In stock" : "Out stock")) ?></td>
+                            <!-- <td><?php echo htmlspecialchars($book['bookCover']) ?></td>
+                            <td><?php echo htmlspecialchars($book['created_at']) ?></td>
+                            <td><?php echo htmlspecialchars($book['update_at']) ?></td> -->
+                            <td>
+                                <a href="editBook.php?id=<?php echo htmlspecialchars($book['id']) ?> " class="btn2">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <form class="action" action="../../../backend/books/deleteBook.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($book['id']); ?>">
+                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+                                    <button type="submit" class="btn2">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            </div>
         </div>
     </div>
 </div>
