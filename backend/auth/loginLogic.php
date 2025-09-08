@@ -45,10 +45,11 @@
 
         // Lưu thông tin của users vào trong Session
         $_SESSION['id'] = $data['id'];
-        $_SESSION['username'] = $data['username'];
+        $_SESSION['username'] = $data['username'];  
         $_SESSION['email'] = $data['email'];
         $_SESSION['role'] = $data['role'];
-
+        $_SESSION['token'] = $token;
+        $_SESSION['token-expire'] = $token_expire;
         header('Location: ../../view/homepage/index.php');
         exit();
     }
