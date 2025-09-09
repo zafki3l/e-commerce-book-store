@@ -24,7 +24,7 @@
     <style>
         .bookmanage{
             display: flex;
-            height: 100vh;
+            height: auto;
         }
 
         .main-content {
@@ -56,7 +56,7 @@
         
         .sidebar{
             width: 300px;
-            height: 100vh;
+            height: auto;
             background-color: #faf9ea;
             color: #111014;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -226,7 +226,6 @@
                 <i class="fa-solid fa-filter"></i>
                 <a href="../createSalesReport.php" class="btn">Create Monthly Sales Report</a>
             </div>
-
         </div>
     </div>
 

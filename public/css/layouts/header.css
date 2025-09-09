@@ -17,5 +17,45 @@
 
 .nav-left, .nav-right {
     display: flex;
-    gap: 20px;
+    gap: 50px;
+}
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropdown button {
+    background-color: #111014;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Dropdown content */
+.dropdown .content {
+    display: none;
+    position: absolute;
+    background-color: #faf9ea;
+    min-width: 100px;
+    top: 100%; /* Đặt menu ngay dưới nút */
+    left: 0; /* Căn trái menu với nút */
+}
+
+.dropdown a {
+    display: block;
+    color: #111014;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.dropdown a:hover {
+    background-color: #ca122f;
+}
+
+/* Hiển thị menu khi hover */
+.dropdown:hover .content {
+    display: block;
 }

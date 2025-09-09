@@ -11,8 +11,7 @@
         $likeSearch = "%$search%";
 
         $stmt = $mysqli->prepare(
-            "SELECT bookName, author, price, bookCover
-            FROM books
+            "SELECT * FROM books
             WHERE bookName LIKE ? OR author LIKE ?"
         );
 

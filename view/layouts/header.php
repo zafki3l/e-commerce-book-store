@@ -14,7 +14,15 @@
     <div class="header">
         <ul type="none" class="nav-menu">
             <div class="nav-left">
-                <li><a href="#">Books Category</a> </li>
+                <li>
+                    <div class="dropdown">
+                        <button>Category</button>
+                        <div class="content">
+                        <a href="../category/fiction.php">Fiction</a>
+                        <a href="../category/nonFiction.php">Non-Fiction</a>
+                        <a href="../category/science.php">Science</a>
+                        <a href="../category/history.php">History</a>
+                    </div>
                 <li><a href="../homepage/index.php">Homepage</a></li>
                 <?php if($role == 3): ?> <!--admin-->
                         <li><a href="../admin/dashboard.php">Admin Dashboard</a></li> <!--show dashboard for admin-->
@@ -22,8 +30,6 @@
                 <?php elseif($role == 2): ?>
                         <li><a href="../staff/dashboard.php">Staff Dashboard</a></li> <!--Show dashboard for staff-->
                 <?php endif; ?>
-                <li><a href="#">On Sales</a></li>
-                <li><a href="#">New Books</a></li>
             </div>
 
             <div class="nav-right">
