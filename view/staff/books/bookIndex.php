@@ -151,6 +151,13 @@
                 border-collapse: collapse;
                 text-align: center;
                 
+                td {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    max-width: 100px;
+                }
+                
             }
 
 
