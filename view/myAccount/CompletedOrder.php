@@ -18,9 +18,6 @@
     <title>Pending Order</title>
 </head>
 <body>
-        <!--Header-->
-    <?php include('../layouts/header.php') ?>
-
     <!--Main content-->
     <div class="main-content">
         <h2>Pending Orders</h2>
@@ -54,8 +51,5 @@
             </tbody>
         </table>
     </div>
-
-    <!--Footer-->
-    <?php include('../layouts/footer.php') ?>
 </body>
 </html>

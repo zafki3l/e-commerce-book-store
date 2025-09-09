@@ -65,7 +65,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 1; /* Giới hạn 2 dòng */
+    -webkit-line-clamp: 1; /* Giới hạn 1 dòng */
     -webkit-box-orient: vertical;
     text-align: left;
 }

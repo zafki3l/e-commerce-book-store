@@ -4,9 +4,9 @@
 
     // Lấy ra các sách đang giảm giá
     $sql = $mysqli->query(
-        "SELECT id, bookName, author, price, (price * 0.8), bookCover
+        "SELECT id, bookName, author, price, (price * 0.8) as 'discountedPrice', bookCover
         FROM books
-        ORDER BY id DESC
+        ORDER BY RAND()
         LIMIT 10"
     );
 

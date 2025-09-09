@@ -46,7 +46,7 @@
                     <th>Status</th>
                     <th>Created at</th>
                     <th>Updated at</th>
-                    <th>View Detail</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,6 +71,7 @@
                             <td><?php echo htmlspecialchars($order['created_at']) ?></td>
                             <td><?php echo htmlspecialchars($order['update_at']) ?></td>
                             <td>
+                                <a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>">View detail</a>
                                 <a href="editOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>" class="btn btn-edit">Edit</a>
                                 <form action="../../../backend/orders/deleteOrder.php" method="post" style="display:inline;">
                                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($order['id']); ?>">

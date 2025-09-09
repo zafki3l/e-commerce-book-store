@@ -25,13 +25,13 @@
                 </a>
                 <h3 class="book-title"><?php echo htmlspecialchars($book['bookName']) ?></h3>
                 <p class="book-author"><?php echo htmlspecialchars($book['author']) ?></p>
-                <p class="book-price"><?php echo htmlspecialchars($book['price']) ?> VND</p>
+                <p class="book-price"><?php echo htmlspecialchars($book['discountedPrice']) ?> VND (20% Discounted)</p>
 
                 <!-- Nếu khách hàng đã đăng nhập -->
                 <?php if(isset($_SESSION['id'])): ?>
                     <form action="/bookStore/backend/buyNow.php" method="post">
                         <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
-                        <input type="hidden" name="price" value="<?php echo $book['price']; ?>">
+                        <input type="hidden" name="price" value="<?php echo $book['discountedPrice']; ?>">
                         <input type="hidden" name="quantity" value="1">
                         <button type="submit" class="btn-buy-now">Buy now</button>
                     </form>
@@ -41,7 +41,7 @@
                     <button type="button"
                             class="btn-buy-guest btn-buy-now"
                             data-book-id="<?php echo $book['id']; ?>"
-                            data-price="<?php echo htmlspecialchars($book['price']); ?>">
+                            data-price="<?php echo htmlspecialchars($book['discountedPrice']); ?>">
                         Buy now
                     </button>
                 <?php endif; ?>
