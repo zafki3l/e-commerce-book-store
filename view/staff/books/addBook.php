@@ -17,7 +17,7 @@
         .main-content {
             background-color: #ca122f;
             flex: 1;
-            padding: 100px 0; 
+            /* padding: 100px 0;  */
         }
 
         * {
@@ -47,10 +47,12 @@
             width: 350px;
             height: auto;
             border-radius: 10px;
-            position: absolute;
+            /* position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); */
+            margin: 0 auto;
+            margin-top: 70px;
         }
 
         .content1{
@@ -117,7 +119,7 @@
         .submit{
             padding: 10px 30px;
             border-radius: 10px;
-            border: 2px solid black;
+            border: none;
             background-color: #ec4964ff;
             color: #fff;
             margin-left: 50px;
@@ -126,6 +128,7 @@
         .cuoi{
             text-align: center;
             margin: 25px 0;
+            padding-bottom: 10px;
             a{
                 text-decoration: none;
                 margin-left: 20px;
