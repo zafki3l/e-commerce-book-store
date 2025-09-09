@@ -5,12 +5,6 @@
 
     session_start();
 
-    // VALIDATE TOKEN
-    if (!validateToken($_POST['csrf_token'])) {
-        die("CSRF token không hợp lệ hoặc đã hết hạn!");
-    }
-
-
     // Lấy thông tin người dùng đã đăng nhập
     $user_id = $_SESSION['id'] ?? 0;
     $book_id = $_POST['book_id'] ?? 0;
