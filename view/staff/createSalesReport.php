@@ -16,43 +16,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="\bookStore\public\css\staff\createSalesReport.css">
+    <link rel="stylesheet" href="/bookStore/public/css/staff/createSalesReport.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Sales Report</title>
 </head>
 <body>
     <!--Header-->
-    <?php include('C:\xampp\htdocs\bookStore\view\layouts\staff\staffHeader.php') ?>
+    <?php include('../../layouts/staff/staffHeader.php'); ?>
 
-    <!--Main content-->
-    <div class="main-content">
-        <h2>Sales Report</h2>
-        <form action="createSalesReport.php" method="post">
-            <input type="text" name="month" id="month" placeholder="month">
+    <div class="bookmanage">
+        <div class="sidebar">
+            <div class="name-user">
+                <i class="fa-solid fa-circle-user"></i>
+                <h3>WELCOME, <?php echo htmlspecialchars($username); ?></h3>
+            </div>
+
+            <hr>
+            
             <br>
-            <input type="submit">
-            <a href="dashboard.php">Cancel</a>
-        </form>
 
-        <p> 
-            <?php 
-                switch($month) {
-                    case 1: $monthName = "January"; break;
-                    case 2: $monthName = "February"; break;
-                    case 3: $monthName = "March"; break;
-                    case 4: $monthName = "April"; break;
-                    case 5: $monthName = "May"; break;
-                    case 6: $monthName = "June"; break;
-                    case 7: $monthName = "July"; break;
-                    case 8: $monthName = "August"; break;
-                    case 9: $monthName = "September"; break;
-                    case 10: $monthName = "October"; break;
-                    case 11: $monthName = "November"; break;
-                    case 12: $monthName = "December"; break;
-                    default: echo "ERROR";
-                }
-            ?>
-            <?php echo "Sales report of {$monthName}: " . $totalPrice ?>VNĐ
-        </p>
+            <div class="function">
+                <div class="item-function">
+                    <i class="fa-solid fa-book"></i>
+                    <a href="../books/bookIndex.php" class="btn">Book Management</a>
+                </div>
+
+                <div class="item-function">
+                    <i class="fa-solid fa-receipt"></i>
+                    <a href="../orders/orderIndex.php" class="btn">Order Management</a>
+                </div>
+
+                <div class="item-function">
+                    <i class="fa-solid fa-filter"></i>
+                    <a href="../createSalesReport.php" class="btn">Create Monthly Sales Report</a>
+                </div>
+            </div>
+        </div>
+
+   
+        <!--Main content-->
+        <div class="main-content">
+            <div class="content-right">
+                <div class="content1">
+                    <h2>Sales Report</h2>
+                </div>
+
+                <div class="content2">
+                    <form action="createSalesReport.php" method="post">
+                        <input type="text" name="month" id="book" placeholder="month">
+                        <input type="submit" id="submit">
+                        <!-- <a href="dashboard.php">Cancel</a> -->
+                    </form>
+                    <div class="noti">
+                        <h2>
+                            <?php 
+                                switch($month) {
+                                    case 1: $monthName = "January"; break;
+                                    case 2: $monthName = "February"; break;
+                                    case 3: $monthName = "March"; break;
+                                    case 4: $monthName = "April"; break;
+                                    case 5: $monthName = "May"; break;
+                                    case 6: $monthName = "June"; break;
+                                    case 7: $monthName = "July"; break;
+                                    case 8: $monthName = "August"; break;
+                                    case 9: $monthName = "September"; break;
+                                    case 10: $monthName = "October"; break;
+                                    case 11: $monthName = "November"; break;
+                                    case 12: $monthName = "December"; break;
+                                    default: echo "ERROR";
+                                }
+                            ?>
+                            <?php echo "Sale report of {$monthName} " . $monthName . ":" ?>
+                            </h2>
+                    </div>
+                    
+
+                    <div class="report1">
+                        <div class="total">
+                            <div class="order-total">
+                                <div class="shopping">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <div class="about">
+                                    <h3>TONG SO DON HANG</h3>
+                                    <p>10 (<a href="" style="text-decoration: none; color: rgb(85, 85, 198);">Chi tiet</a>)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="income">
+                            <div class="money">
+
+                                <div class="money-icon">
+                                    <i class="fa-solid fa-dollar-sign"></i>
+                                </div>
+                                <div class="about">
+                                    <h3>TONG THU NHAP</h3>
+                                    <p> 
+                                        <?php 
+                                            switch($month) {
+                                                case 1: $monthName = "January"; break;
+                                                case 2: $monthName = "February"; break;
+                                                case 3: $monthName = "March"; break;
+                                                case 4: $monthName = "April"; break;
+                                                case 5: $monthName = "May"; break;
+                                                case 6: $monthName = "June"; break;
+                                                case 7: $monthName = "July"; break;
+                                                case 8: $monthName = "August"; break;
+                                                case 9: $monthName = "September"; break;
+                                                case 10: $monthName = "October"; break;
+                                                case 11: $monthName = "November"; break;
+                                                case 12: $monthName = "December"; break;
+                                                default: echo "ERROR";
+                                            }
+                                        ?>
+                                        <?php echo $totalPrice ?>VNĐ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
