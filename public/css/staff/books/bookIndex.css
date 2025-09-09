@@ -1,6 +1,6 @@
 .bookmanage{
     display: flex;
-    height: auto;
+    height: max-content;
 }
 
 .main-content {
@@ -98,7 +98,7 @@ hr{
     #submit{
         padding: 16px 15px;
         border-radius: 10px;
-        border: 2px solid black;
+        border: none;
         background-color: #e2e0c5;
     }
 
@@ -109,7 +109,7 @@ hr{
         text-decoration: none;
         border-radius: 5px;
         font-size: 16px;
-        border: 2px solid black;
+        border: none;
     }
 }
 
@@ -126,12 +126,19 @@ table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
         text-align: center;
+
+        td{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+        }
     }
 
 
 .action{
     display: inline;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     input{
         border: none;
     }
@@ -143,12 +150,17 @@ table, th, td {
     border-radius: 10px;
     border: none;
     background-color: #dbd4d4;
+    margin-right: 10px ;
     .fa-pen{
         color: rgb(75, 75, 239);
     }
 
     .fa-trash{
         color: red;
+    }
+
+    .fa-info{
+        color: black;
     }
 }
 
@@ -157,10 +169,11 @@ table, th, td {
     padding: 0 10px;
 }
 
-a:visited{
+a:visited, button:visited{
     color: black;
 }
 
 a:active {
     color: #ca122f;
 }
+
