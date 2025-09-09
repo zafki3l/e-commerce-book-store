@@ -6,7 +6,7 @@
     if (!isset($_SESSION['token'])) {
         $_SESSION['token'] = bin2hex(random_bytes(32)); // tạo token ngẫu nhiên
     }
-
+    
     // Tạo token
     function generateToken() 
     {
