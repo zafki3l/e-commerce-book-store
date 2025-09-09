@@ -1,0 +1,71 @@
+
+/* infor-book */
+.main-content {
+    background-color: #faf9ea;
+}
+
+.infor-book {
+    display: flex;
+    padding: 0px 100px;
+    gap: 60px;
+    margin: 40px 0px;
+    padding-bottom: 80px;
+}
+
+.infor-book .img-book img {
+    width: 350px;
+    border-radius: 8px;
+}
+.infor-book .text-infor .name-book h1 {
+    text-align: start;
+    font-weight: 100;
+    color: #074e8b;
+    margin-bottom: 15px;
+}
+.infor-book .text-infor .content-infor .brand-book {
+    color: #074e8b;
+    margin-bottom: 15px;
+}
+.infor-book .text-infor .content-infor .price-book {
+    display: flex;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.infor-book .text-infor .content-infor .price-book h1 {
+    color: #074e8b;
+}
+.infor-book .text-infor .content-infor .price-book p {
+    color: #acacac;
+    text-decoration: line-through;
+}
+.infor-book .text-infor .content-infor .content-summary {
+    text-align: justify;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 24px;
+    margin-bottom: 70px;
+    padding-right: 80px;
+}
+.infor-book .text-infor .content-infor .content-summary span {
+    font-weight: 700;
+}
+
+.infor-book .text-infor .content-infor .btn-order button {
+    color: white;
+    background-color: black;
+    border: none;
+    width: max-content;
+    padding: 16px 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.infor-book .text-infor .content-infor .btn-order button:hover {
+    background-color: #074e8b;
+}
+
+.btn-order .btn-buy-now{
+    border-radius: 8px;
+}

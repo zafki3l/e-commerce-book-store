@@ -1,9 +1,12 @@
 <?php 
     include_once('../../config.php');
-    include_once(ROOT_PATH . '/backend/bookSection/bestSeller.php');
+    include_once(ROOT_PATH . '/backend/category/nonFiction.php');
 
     $books = $result;
+    session_start();
+    $username = $_SESSION['username'] ?? ''; 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +14,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/homepage/homepage.css">
     <link rel="stylesheet" href="../../public/css/homepage/bookSection.css">
-    <title>BEST SELLER</title>
+    <title>NON-FICTION</title>
 </head>
 <body>
-    <h2 class="section">BEST SELLER</h2>
+    <!--Header-->
+    <?php include('../layouts/header.php') ?>
+    <div class="header">
+        <ul type="none" class="user-menu">
+            <div class="search-bar">
+                <form action="\bookStore\view\homepage\searchResult.php" method="get">
+                    <input type="text" name="search" placeholder="Search books..."/>
+                </form> 
+            </div>
+        </ul>
+    </div>
+
+    <!--Main content-->
+    <div class="main-content">
+            <h2 class="section">NON-FICTION</h2>
 
     <div class="book-grid">
         <?php foreach ($books as $book): ?>
@@ -72,9 +89,11 @@
             </form>
         </div>
     </div>
-
+    <!--Footer-->
+    <?php include('../layouts/footer.php') ?>
 </body>
 </html>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

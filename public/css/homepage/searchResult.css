@@ -1,11 +1,12 @@
-.section {
-    font-size: 50px;
-    justify-content: center;
-    text-align: center;
+.search {
+    font-size: 24px;
+    justify-content: left;
+    text-align: left;
     color: #faf9ea;
     padding-top: 50px;
     padding-bottom: 50px;
     letter-spacing: 6px;
+    padding-left: 50px;
 }
 
 .book-section {
