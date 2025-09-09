@@ -16,7 +16,7 @@
 
             <div class="nav-right">
                 <?php if(isset($_SESSION['username'])): ?>
-                    <li><a href="#">Account</a></li>
+                    <li><a href="\bookStore\view\myAccount\myAccount.php">Account</a></li>
                     <li>
                         <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                     </li>
