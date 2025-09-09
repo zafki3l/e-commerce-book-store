@@ -18,7 +18,7 @@
                 <li><a href="../homepage/index.php">Homepage</a></li>
                 <?php if($role == 3): ?> <!--admin-->
                         <li><a href="../admin/dashboard.php">Admin Dashboard</a></li> <!--show dashboard for admin-->
-                        <li><a href="../staff/dashboard.php">Staff Dashboard</a></li>
+                        <li><a href="../staff/books/bookIndex.php">Staff Dashboard</a></li>
                 <?php elseif($role == 2): ?>
                         <li><a href="../staff/dashboard.php">Staff Dashboard</a></li> <!--Show dashboard for staff-->
                 <?php endif; ?>
