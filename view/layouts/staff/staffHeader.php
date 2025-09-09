@@ -11,7 +11,7 @@
         <ul type="none" class="nav-menu">
             <div class="nav-left">
                 <li><a href="/bookStore/view/homepage/index.php">Homepage</a></li>
-                <li><a href="/bookStore/view/staff/dashboard.php">Staff Dashboard</a></li>
+                <li><a href="/bookStore/view/staff/books/bookIndex.php">Staff Dashboard</a></li>
             </div>
 
             <div class="nav-right">
