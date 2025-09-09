@@ -86,7 +86,7 @@
                                     default: echo "ERROR";
                                 }
                             ?>
-                            <?php echo "Sale report of {$monthName} " . $monthName . ":" ?>
+                            <?php echo "Sale report of {$monthName} " . ":" ?>
                             </h2>
                     </div>
                     
