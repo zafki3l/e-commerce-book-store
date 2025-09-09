@@ -122,7 +122,7 @@
             #submit{
                 padding: 16px 15px;
                 border-radius: 10px;
-                border: 2px solid black;
+                border: none;
                 background-color: #e2e0c5;
             }
 
@@ -133,7 +133,7 @@
                 text-decoration: none;
                 border-radius: 5px;
                 font-size: 16px;
-                border: 2px solid black;
+                border: none;
             }
         }
 
