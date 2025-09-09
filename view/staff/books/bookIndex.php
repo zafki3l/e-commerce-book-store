@@ -24,6 +24,7 @@
     <style>
         .bookmanage{
             display: flex;
+            height: 100vh;
         }
 
         .main-content {
