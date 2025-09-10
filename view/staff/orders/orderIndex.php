@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bookStore/public/css/staff/books/bookIndex.css">
+    <link rel="stylesheet" href="/bookStore/public/css/staff/orders/orderIndex.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Index Order</title>
 </head>
@@ -110,9 +110,13 @@
                                     <td><?php echo htmlspecialchars($order['created_at']) ?></td>
                                     <td><?php echo htmlspecialchars($order['update_at']) ?></td>
                                     <td>
-                                        <a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>" class="btn2">
+                                        <!-- <a href="viewOrderDetail.php?id=<?php echo htmlspecialchars($order['id']) ?>" class="btn2">
                                             <i class="fa-solid fa-info"></i>
-                                        </a>
+                                        </a> -->
+                                        <button class="btn-detail" data-id="<?php echo htmlspecialchars($order['id']); ?>">
+                                            <i class="fa-solid fa-info"></i>
+                                        </button>
+        
                                         <a href="editOrder.php?id=<?php echo htmlspecialchars($order['id']) ?>" class="btn-edit btn2">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
@@ -130,8 +134,85 @@
                     </tbody>
                 </table>
             </div>
+            <div class="box">
+
+            </div> 
         </div>
+        <!-- <div class="box">
+
+        </div>                                -->
+
     </div>
 </div>
 </body>
+
+<script>
+window.onload = () => {
+    const buttonsDetail = document.querySelectorAll('.btn-detail');
+    const box = document.querySelector('.box');
+
+    buttonsDetail.forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const orderId = button.dataset.id;
+            console.log("Click detail button:", orderId);
+
+            try {
+                const res = await fetch(`../orders/getOrderDetailApi.php?id=${orderId}`);
+                const data = await res.json();
+                console.log("API response:", data);
+
+                if (data.error) {
+                    box.innerHTML = `<p style="color:red;">${data.error}</p>`;
+                    return;
+                }
+
+                box.innerHTML = `
+                <div class="box-detail">    
+                    <div class="title-box-detail">
+                        <h2>Chi tiết đơn hàng #${orderId}</h2>
+                    </div>
+                    <div class="list-item">
+                        ${data.items.map(item => `
+                            <div class="item">
+                                <p>Book Name: ${item.bookName}</p>
+                            </div>
+                            <div class="item">
+                                <p>Book Author: ${item.author}</p>
+                            </div>
+                            <div class="item">
+                                <p>Book Publisher: ${item.publisher}</p>
+                            </div>
+                            <div class="item">
+                                <p>Price: ${item.price}</p>
+                            </div>
+                            <div class="item">
+                                <p>Quantity: ${item.quantity}</p>
+                            </div>
+                            <div class="item">
+                                <p><b>Total Price: ${item.price * item.quantity} VND</b></p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="btn-cancel">
+                        <button class="btn-cancel-detail">Cancel</button>
+                    </div>
+                </div>
+                `;
+
+                // gắn lại sự kiện Cancel
+                document.querySelector('.btn-cancel-detail').addEventListener('click', () => {
+                    box.innerHTML = "";
+                });
+
+            } catch (err) {
+                console.error("Fetch error:", err);
+                box.innerHTML = "<p style='color:red;'>Không tải được chi tiết đơn hàng.</p>";
+            }
+        });
+    });
+};
+
+</script>
+
 </html>
