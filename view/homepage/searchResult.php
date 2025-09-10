@@ -1,6 +1,8 @@
 <?php 
     include_once('../../config.php');
 
+    session_start();
+
     $result = include(ROOT_PATH . '/backend/searchBar/searchLogic.php');
     $books = $result['data'];
     $search = $result['search'];
