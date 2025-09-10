@@ -1,0 +1,173 @@
+.main-content {
+    background-color: #ca122f;
+    flex: 1;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.header{
+    z-index: 1000;
+}
+
+.my-order {
+    display: flex;
+    /* content-right */
+    .content-right {
+        width: 100%;
+        /* dashbroad-my-order */
+        .dashbroad-my-order-conatiner {
+            .dashbroad-my-order {
+                width: 100%;
+                position: sticky;
+                top: 0;
+                background-color: #faf9ea;
+                padding: 10px 50px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                .title-dashbroad-my-order {
+                margin-bottom: 30px;
+                z-index: 10;
+                h1 {
+                    font-weight: 100;
+                }
+                }
+                /* list-infor-my-order */
+                .list-infor-my-order {
+                display: flex;
+                gap: 50px;
+                .item-infor-my-order {
+                    text-align: center;
+                    padding-bottom: 12px;
+                    p:nth-of-type(1) {
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                    }
+                }
+                }
+            }
+            /* position: relative; */
+            width: 100%;
+            height: 142px;
+        }
+    }
+}
+
+.list-product {
+    margin-top: 30px;
+    padding: 0px 30px;
+    .item-list-product {
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 12px;
+        padding: 24px 20px;
+        margin-bottom: 12px;
+        .status-product {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 24px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+        .id-status-product {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .id-product {
+            p {
+                color: blueviolet;
+                font-weight: 600;
+            }
+            }
+            .infor-status {
+            background-color: #b8d4a9;
+            padding: 2px 10px;
+            border-radius: 30px;
+            p {
+                font-weight: 600;
+                color: rgb(64, 155, 25);
+            }
+            }
+        }
+        .date-product {
+            p {
+            color: #919191;
+            }
+        }
+        }
+        .img-nameBook {
+        display: flex;
+        padding: 10px 0;
+        height: max-content;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+        }
+
+        .nameBook {
+            margin-left: 10px;
+            p {
+            font-weight: 600;
+            }
+        }
+
+        .payment-information {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        .product-quantity {
+            p {
+            color: #919191;
+            }
+        }
+        .price-product {
+            .btn {
+            display: flex;
+            gap: 10px;
+            button {
+                padding: 10px 0;
+                width: 180px;
+                border-radius: 10px;
+                border: none;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .btn-evaluate {
+                color: #3559d0;
+                background-color: white;
+                border: 1px solid #3559d0;
+            }
+            .btn-buyback {
+                color: white;
+                background-color: #dc1a1a;
+            }
+            }
+        }
+        }
+    }
+}
+
+.img-book {
+    width: 150px;
+    height: max-content;
+    img {
+    width: 100%;
+    object-fit: cover;
+    }
+}
