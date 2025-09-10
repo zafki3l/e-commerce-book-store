@@ -2,12 +2,15 @@
     include_once('../../config.php');
     include_once(ROOT_PATH . '/connect.php');
     include_once(ROOT_PATH . '/backend/SalesReport/createSalesReport.php');
+    include_once(ROOT_PATH . '/backend/SalesReport/totalOrder.php');
     include_once(ROOT_PATH . '/backend/auth/authUser.php');
 
     isLogin();
     ensureStaffOrAdmin();
     
+    $username = $_SESSION['username'];  
     $totalPrice = monthlyReport($mysqli);
+    $totalOrder = totalOrder($mysqli);
     $month = (!empty($_POST['month'])) ? $_POST['month'] : date('m');
 ?>
 
@@ -17,12 +20,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bookStore/public/css/staff/createSalesReport.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Sales Report</title>
 </head>
 <body>
     <!--Header-->
-    <?php include('../../layouts/staff/staffHeader.php'); ?>
+    <?php include('../layouts/staff/staffHeader.php'); ?>
 
     <div class="bookmanage">
         <div class="sidebar">
@@ -38,17 +41,17 @@
             <div class="function">
                 <div class="item-function">
                     <i class="fa-solid fa-book"></i>
-                    <a href="../books/bookIndex.php" class="btn">Book Management</a>
+                    <a href="books/bookIndex.php" class="btn">Book Management</a>
                 </div>
 
                 <div class="item-function">
                     <i class="fa-solid fa-receipt"></i>
-                    <a href="../orders/orderIndex.php" class="btn">Order Management</a>
+                    <a href="orders/orderIndex.php" class="btn">Order Management</a>
                 </div>
 
                 <div class="item-function">
                     <i class="fa-solid fa-filter"></i>
-                    <a href="../createSalesReport.php" class="btn">Create Monthly Sales Report</a>
+                    <a href="createSalesReport.php" class="btn">Create Monthly Sales Report</a>
                 </div>
             </div>
         </div>
@@ -98,8 +101,8 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </div>
                                 <div class="about">
-                                    <h3>TONG SO DON HANG</h3>
-                                    <p>10 (<a href="" style="text-decoration: none; color: rgb(85, 85, 198);">Chi tiet</a>)</p>
+                                    <h3>Total Order</h3>
+                                    <p><?php echo $totalOrder ?></p>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +114,7 @@
                                     <i class="fa-solid fa-dollar-sign"></i>
                                 </div>
                                 <div class="about">
-                                    <h3>TONG THU NHAP</h3>
+                                    <h3>Total Income</h3>
                                     <p> 
                                         <?php 
                                             switch($month) {
