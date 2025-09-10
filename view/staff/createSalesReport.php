@@ -90,7 +90,7 @@
                                 }
                             ?>
                             <?php echo "Sale report of {$monthName} " . ":" ?>
-                            </h2>
+                            </hq>
                     </div>
                     
 
