@@ -92,7 +92,7 @@ hr{
     #book{
         border-radius: 10px;
         border: 2px solid black;
-        padding: 16px 100px 16px 10px;
+        padding: 16px 10px 16px 10px;
     }
 
     #submit{
@@ -154,4 +154,12 @@ hr{
 .about{
   margin: 5px 10px;
   line-height: 1.8;
+}
+
+a:visited, button:visited{
+    color: black;
+}
+
+a:active {
+    color: #ca122f;
 }
