@@ -154,10 +154,9 @@
             <div class="content2">
                 <form action="../../../backend/books/editBook.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
-                    <!-- <div class="input-group">
-                        <input type="text" name="id" value="<?php echo $book['id']; ?>" readonly>
-                        <label for="">Book ID</label>
-                    </div>    -->
+                    <div class="input-group">
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($book['id']); ?>" required>
+                    </div>   
                     <br>
                     <div class="input-group">
                         <input type="text" name="bookName" id="bookName" value="<?php echo htmlspecialchars($book['bookName']) ?>">
