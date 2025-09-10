@@ -59,3 +59,8 @@
 .dropdown:hover .content {
     display: block;
 }
+
+.nav-menu a{
+    color: #faf9ea;
+    text-decoration: none;
+}

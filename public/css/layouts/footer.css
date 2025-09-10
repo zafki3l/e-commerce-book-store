@@ -69,4 +69,7 @@ footer p {
 .bottom li {
     margin-top: 15px;
     margin-bottom: 20px;
+    a{
+        text-decoration: none;
+    }
 }
