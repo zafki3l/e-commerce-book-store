@@ -18,7 +18,7 @@
             $username = "%$search%";
             //Sử dụng prepared statement để chống SQL Injection
             $stmt = $mysqli->prepare(
-                "SELECT o.id, o.user_id, u.username, o.status, o.created_at, o.update_at 
+                "SELECT o.id, o.user_id, u.username, u.address, o.status, o.created_at, o.update_at 
                 FROM orders o
                 INNER JOIN users u ON o.user_id = u.id 
                 WHERE o.id = ?
@@ -37,7 +37,7 @@
             $data = $result->fetch_all(MYSQLI_ASSOC);
         } else { //Nếu nút tìm kiếm chưa dc bấm thì vẫn hiển thị tất cả kết quả
             $sql = $mysqli->query(
-                "SELECT o.id, o.user_id, u.username, o.status, o.created_at, o.update_at 
+                "SELECT o.id, o.user_id, u.username, u.address, o.status, o.created_at, o.update_at 
                 FROM orders o
                 INNER JOIN users u ON o.user_id = u.id
                 ORDER BY o.id ASC"

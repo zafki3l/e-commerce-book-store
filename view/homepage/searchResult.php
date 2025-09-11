@@ -81,6 +81,9 @@
                     <label for="guest_email">Email</label>
                     <input id="guest_email" type="email" name="guest_email" placeholder="Email" required>
 
+                    <label for="guest_address">Address</label>
+                    <input id="guest_address" type="text" name="guest_address" placeholder="Enter your address" required>
+
                     <div class="modal-actions">
                         <button type="submit" class="btn-confirm">Continue</button>
                         <button type="button" id="modal-cancel" class="btn-cancel">Cancel</button>

@@ -10,6 +10,7 @@
     $book_id = $_POST['book_id'] ?? 0;
     $book_price = $_POST['price'] ?? 0;
     $quantity = $_POST['quantity'] ?? 1;
+    $address = $_POST['guest_address'] ?? '';
     $guestPassword = password_hash(hex2bin(random_bytes(32)), PASSWORD_DEFAULT);
 
     if ($book_id) {
@@ -40,11 +41,11 @@
                 $stmt->execute();
             } else {
                 $stmt = $mysqli->prepare(
-                    "INSERT INTO users (username, email, password, role)
-                    VALUES (?, ?, ?, 0)"
+                    "INSERT INTO users (username, email, address, password, role)
+                    VALUES (?, ?, ?, ?, 0)"
                 );
 
-                $stmt->bind_param('sss', $fullName, $email, $guestPassword);
+                $stmt->bind_param('ssss', $fullName, $email, $address, $guestPassword);
                 $stmt->execute();
                 $user_id = $stmt->insert_id;
             }

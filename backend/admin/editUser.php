@@ -16,6 +16,7 @@
     //Lưu dữ liệu nhập vào của user vào biến
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $address = $_POST['address'];
     $role = $_POST['role'];
     $id = $_POST['id'];
 
@@ -24,12 +25,13 @@
         "UPDATE users
         SET username = ?, 
             email = ?,
+            address = ?,
             role = ?
         WHERE id = ?"
     );
 
     //Truyền dữ liệu nhập vào của user vào câu truy vấn và thực thi câu truy vấn đó
-    $stmt->bind_param('sssi', $username, $email, $role, $id);
+    $stmt->bind_param('ssssi', $username, $email, $address, $role, $id);
     if ($stmt->execute()) {
         header('Location: ../../view/admin/dashboard.php');
         exit();
