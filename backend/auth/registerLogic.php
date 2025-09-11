@@ -6,6 +6,7 @@
     // Lấy dữ liệu nhập vào của user và lưu vào biến
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
+    $address = trim($_POST['address']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // Kiểm tra user đã tồn tại
@@ -30,11 +31,11 @@
     } else { 
         // Nếu như user chưa tồn tại -> Tạo mới user
         $stmt = $mysqli->prepare(
-            "INSERT INTO users (username, email, password)
-            VALUES (?, ?, ?)"
+            "INSERT INTO users (username, email, address, password)
+            VALUES (?, ?, ?, ?)"
         );
 
-        $stmt->bind_param('sss', $username, $email, $password);
+        $stmt->bind_param('ssss', $username, $email, $address, $password);
         $stmt->execute();
     }
 

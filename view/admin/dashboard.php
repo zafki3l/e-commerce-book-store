@@ -51,6 +51,7 @@
                             <th>User ID</th>
                             <th style="width: 20%;">Username</th>
                             <th style="width: 20%">Email</th>
+                            <th style="width: 10%">Address</th>
                             <th style="width: 10%">Role</th>
                             <th style="width: 15%">Created at</th>
                             <th style="width: 15%">Updated at</th>
@@ -63,6 +64,7 @@
                         <td><?php echo htmlspecialchars($user['id']) ?></td>
                         <td><?php echo htmlspecialchars($user['username']) ?></td>
                         <td><?php echo htmlspecialchars($user['email']) ?></td>
+                        <td><?php echo htmlspecialchars($user['address']) ?></td>
                         <td>
                             <?php 
                                 switch ($user['role']) {

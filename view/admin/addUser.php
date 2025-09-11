@@ -49,7 +49,7 @@
         .add-box{
             background-color: #fff;
             width: 350px;
-            height: 400px;
+            height: 450px;
             border-radius: 10px;
             position: absolute;
             top: 50%;
@@ -167,11 +167,17 @@
                     <input type="text" name="email" id="email" required>
                     <label for="">Email</label>
                 </div>
+                <br>
+
+                <div class="input-group">
+                    <input type="text" name="address" id="address" required>
+                    <label for="">Address</label>
+                </div>
 
                 <br>
 
                 <div class="input-group">
-                    <input type="text" name="password" id="password" required>
+                    <input type="password" name="password" id="password" required>
                     <label for="">Password</label>
                 </div>
 

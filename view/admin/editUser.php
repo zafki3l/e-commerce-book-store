@@ -162,9 +162,9 @@
 
             <div class="content2">
                 <form action="../../backend/admin/editUser.php" method="post">
-                    <!-- <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
-                    <input type="text" name="id" id="id" placeholder="id_user" value="<?php echo $user['id'] ?>" readonly>
-                    <br> -->
+                    <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
+                    <input type="hidden" name="id" id="id" placeholder="id_user" value="<?php echo $user['id'] ?>" readonly>
+                    <br>
                     <div class="input-group">
                         <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user['username']) ?>" required>
                         <label for="">User name</label>
@@ -175,6 +175,13 @@
                         <input type="text" name="email" id="email" value="<?php echo htmlspecialchars($user['email']) ?>" required>
                         <label for="">Email</label>
                     </div>
+                    <br>
+
+                    <div class="input-group">
+                        <input type="text" name="address" id="address" value="<?php echo htmlspecialchars($user['address']) ?>" required>
+                        <label for="">Address</label>
+                    </div>
+
                     <br>
 
                     <select name="role" id="role">

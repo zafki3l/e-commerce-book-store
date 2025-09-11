@@ -82,6 +82,7 @@
                             <th>Order ID</th>
                             <th>User ID</th>
                             <th>User Name</th>
+                            <th>Address</th>
                             <th>Total Price</th>
                             <th>Status</th>
                             <th>Created at</th>
@@ -95,6 +96,7 @@
                                     <td><?php echo htmlspecialchars($order['id']) ?></td>
                                     <td><?php echo htmlspecialchars($order['user_id']) ?></td>
                                     <td><?php echo htmlspecialchars($order['username']) ?></td>
+                                    <td><?php echo htmlspecialchars($order['address']) ?></td>
                                     <td><?php echo htmlspecialchars(getOrderTotalPriceById($mysqli, $order['id'])) ?></td>
                                     <td>
                                         <?php 
