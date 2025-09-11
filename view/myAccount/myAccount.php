@@ -1,9 +1,18 @@
 <?php 
 include_once('../../config.php');
+include_once(ROOT_PATH . '/connect.php');
 include_once(ROOT_PATH . '/backend/auth/authUser.php');
+include_once(ROOT_PATH . '/backend/myOrder/getAllOrder.php');
+include_once(ROOT_PATH . '/backend/myOrder/pendingOrder.php');
+include_once(ROOT_PATH . '/backend/myOrder/beingDeliveredOrder.php');
+include_once(ROOT_PATH . '/backend/myOrder/completedOrder.php');
 
 isLogin();
 $username = $_SESSION['username'] ?? ''; 
+$orders = getAllOrder($mysqli); // Lấy danh sách đơn hàng từ cơ sở dữ liệu
+$pendingOrder = getPendingOrder($mysqli);
+$beingDeliveredOrder = getBeingDeliveredOrder($mysqli);
+$completedOrder = getCompletedOrder($mysqli);
 ?>
 
 <!DOCTYPE html>
@@ -33,113 +42,92 @@ $username = $_SESSION['username'] ?? '';
             </div>
 
             <div class="list-infor-my-order">
-                
+              <?php 
+              $total = count($orders);
+              $completed = count($completedOrder);
+              $pending = count($pendingOrder);
+              $delivering = count($beingDeliveredOrder);
+              ?>
+              <div class="item-infor-my-order">
+                  <p><?php echo $total; ?></p>
+                  <p>All orders</p>
+              </div>
+              <div class="item-infor-my-order">
+                  <p><?php echo $completed; ?></p>
+                  <p>Completed</p>
+              </div>
+              <div class="item-infor-my-order">
+                  <p><?php echo $pending; ?></p>
+                  <p>Pending</p>
+              </div>
+              <div class="item-infor-my-order">
+                  <p><?php echo $delivering; ?></p>
+                  <p>Being Delivered</p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- list-product -->
         <div class="list-product">
+          <?php foreach ($orders as $order): ?>
+          <div class="item-list-product">
+              <div class="status-product">
+                  <div class="id-status-product">
+                    <div class="id-product">
+                          <p>#<?php echo htmlspecialchars($order['id']); ?></p>
+                      </div>
+                      <div class="infor-status">
+                          <p>
+                            <?php 
+                            switch ($order['status']) {
+                                case 1: $statusName = 'Pending'; break;
+                                case 2: $statusName = 'Being Delivered'; break;
+                                case 3: $statusName = 'Completed'; break;
+                                default: $statusName = 'Unknown';
+                            }
+                            echo htmlspecialchars($statusName); ?></p>
+                      </div>
+                  </div>
+              </div>
 
+              <div class="img-nameBook">
+                <div class="img-book">
+                    <img src="../../public/images/<?php echo htmlspecialchars($order['bookCover']); ?>" alt="Book cover">
+                </div>
+                  <div class="nameBook">      
+                      <p><?php echo htmlspecialchars($order['bookName']); ?></p>
+                  </div>
+              </div>
+
+              <div class="payment-information">
+                  <div class="product-quantity">
+                      <p><?php echo htmlspecialchars($order['quantity']); ?> product</p>
+                  </div>
+
+                  <div class="price-product">
+                      <div style="display:flex;flex-direction:row-reverse;margin-bottom:12px;">
+                          <p style="color:#919191">
+                              Total: <span style="font-weight:600;color:black"><?php echo htmlspecialchars($order['price'] * $order['quantity']); ?>đ</span>
+                          </p>
+                      </div>
+                      <div class="btn">
+                        <?php if(isset($_SESSION['id'])): ?>
+                            <form action="/bookStore/backend/buyNow.php" method="post">
+                                <input type="hidden" name="book_id" value="<?php echo $order['book_id']; ?>">
+                                <input type="hidden" name="price" value="<?php echo $order['price']; ?>">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn-buyback">Buy back</button>
+                            </form>
+                        <?php endif; ?>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
   </div>
-
-  <script>
-  async function loadOrders() {
-      try {
-          const res = await fetch("getOrdersApi.php");
-          const orders = await res.json();
-
-          console.log("Orders:", orders);
-
-          const list = document.querySelector(".list-product");
-          list.innerHTML = "";
-
-          orders.forEach(order => {
-              let coversHTML = "";
-              if (order.bookCovers && Array.isArray(order.bookCovers)) {
-                  coversHTML = order.bookCovers.map(src => `
-                      <div class="img-book">
-                          <img src="${src}" alt="Book cover">
-                      </div>
-                  `).join('');
-              }
-
-              list.innerHTML += `
-                  <div class="item-list-product">
-                      <div class="status-product">
-                          <div class="id-status-product">
-                              <div class="id-product">
-                                  <p>#${order.orderId}</p>
-                              </div>
-                              <div class="infor-status">
-                                  <p>${order.statusText}</p>
-                              </div>
-                          </div>
-                          <div class="date-product">
-                              <p>${order.created_at}</p>
-                          </div>
-                      </div>
-
-                      <div class="img-nameBook">
-                          ${coversHTML}
-                          <div class="nameBook">
-                              <p>${order.bookNames}</p>
-                          </div>
-                      </div>
-
-                      <div class="payment-information">
-                          <div class="product-quantity">
-                              <p>${order.totalQuantity} sản phẩm</p>
-                          </div>
-
-                          <div class="price-product">
-                              <div style="display:flex;flex-direction:row-reverse;margin-bottom:12px;">
-                                  <p style="color:#919191">
-                                      Tổng tiền: <span style="font-weight:600;color:black">${order.totalPrice}đ</span>
-                                  </p>
-                              </div>
-                              <div class="btn">
-                                  <button class="btn-evaluate">Đánh giá đơn hàng</button>
-                                  <button class="btn-buyback">Mua lại</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              `;
-          });
-
-          const total = orders.length;
-          const completed = orders.filter(o => o.statusText === "Completed").length;
-          const pending = orders.filter(o => o.statusText === "Pending").length;
-          const delivering = orders.filter(o => o.statusText === "Being Delivered").length;
-
-          document.querySelector(".list-infor-my-order").innerHTML = `
-              <div class="item-infor-my-order">
-                  <p>${total}</p>
-                  <p>Tất cả</p>
-              </div>
-              <div class="item-infor-my-order">
-                  <p>${completed}</p>
-                  <p>Hoàn tất</p>
-              </div>
-              <div class="item-infor-my-order">
-                  <p>${pending}</p>
-                  <p>Chưa hoàn thành</p>
-              </div>
-              <div class="item-infor-my-order">
-                  <p>${delivering}</p>
-                  <p>Đang giao</p>
-              </div>
-          `;
-      } catch (err) {
-          console.error("Error loading orders:", err);
-      }
-  }
-
-  document.addEventListener("DOMContentLoaded", loadOrders);
-  </script>
 </body>
 </html>

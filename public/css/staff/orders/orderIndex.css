@@ -188,47 +188,50 @@ a:active {
     color: #ca122f;
 }
 
-.box-detail{
-  position: absolute;
+.box-detail {
+  position: fixed; /* Sử dụng fixed để đảm bảo form luôn ở giữa màn hình */
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 500px;
   height: max-content;
   background-color: #faf9ea;
   padding: 20px;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  .title-box-detail{
-    margin-bottom: 12px;
-  }
-  .list-item{
-    .item{
-      width: max-content;
-      max-width: 100%;
-      box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-      font-size: 16px;
-      padding: 10px 12px 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      span{
-        font-weight: 600;
-      }
-    }
-  }
-  .btn-cancel{
-    display: flex;
-    flex-direction: row-reverse;
-    button{
-    width: max-content;
-    padding: 8px 12px ;
-    background-color: red;
-    color: white;
-    font-weight: 500;
-    font-size: 16px;
-    border: none;
-    border-radius: 12px;
-    }
-  }
+  z-index: 1000; /* Đảm bảo form nằm trên các phần tử khác */
 }
 
+.title-box-detail {
+  margin-bottom: 12px;
+}
+
+.list-item .item {
+  width: max-content;
+  max-width: 100%;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  font-size: 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.list-item .item span {
+  font-weight: 600;
+}
+
+.btn-cancel {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn-cancel button {
+  width: max-content;
+  padding: 8px 12px;
+  background-color: red;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+}
