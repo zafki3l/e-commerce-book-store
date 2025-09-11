@@ -49,8 +49,12 @@
 
                     <div class="input-group">
                         <label for="">Status</label>   
-                        <br>                    
-                        <input type="text" name="status" id="status" value="<?php echo htmlspecialchars($order['status']) ?>">
+                        <br>             
+                        <select name="status" id="status">
+                            <option value="1" <?php echo (htmlspecialchars($order['status']) == 1) ? 'selected': '' ?>>Pending</option>
+                            <option value="2" <?php echo (htmlspecialchars($order['status']) == 2) ?'selected': '' ?>>Being Delivered</option>
+                            <option value="3" <?php echo (htmlspecialchars($order['status']) == 3) ? 'selected': '' ?>>Completed</option>
+                        </select>
                     </div>
                     <br>
 
