@@ -9,6 +9,7 @@
             email VARCHAR(50) NOT NULL UNIQUE, 
             password VARCHAR(256) NOT NULL,
             role TINYINT NOT NULL DEFAULT(1), # 1 - user, 2 - staff, 3 - admin
+            address VARCHAR(255),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )'
